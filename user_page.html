@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Cafateria</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+    <div class="container-fluid" id="wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-inverse">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="#">Cafateria</a>
+                    </div>
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="#">Home</a></li>
+                        <li><a href="#">My Orders</a></li>
+                    </ul>
+                    <form class="navbar-form navbar-left" action="/action_page.php">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search" name="search">
+                            <div class="input-group-btn">
+                                <button class="btn btn-default" type="submit">
+                                    <i class="glyphicon glyphicon-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                    <div style="margin-left: 1000px; width:300px;">
+                        <img src="./images/person.png" width="50px" height="50px" />
+                        <a href="#">User Name</a>
+                    </div>
+
+
+                </nav>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div id="side-bar" class="col-lg-5">
+
+                <span class="orderName">tea</span>
+                <button type="button" class="btn btn-info">
+                    <span class="glyphicon glyphicon-plus"></span>
+                </button>
+                <button type="button" class="btn btn-info">
+                    <span class="glyphicon glyphicon-minus"></span>
+                </button>
+                <span class="orderName">EGP 25</span>
+                <button type="button" class="btn btn-default">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </button>
+                <div>
+                    <span class="orderName">Notes :</span><br>
+                    <textarea id="notes"></textarea>
+                </div>
+                <div>
+                    <span class="orderName">Room : </span>
+                    <select class="form-control form-control-sm">
+                        <option selected>Select your Room</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                </div>
+                <br>
+                <hr class="style5">
+                <br>
+                <div class="confirm">
+                    <span class="orderName">EGP 255</span><br><br>
+                    <button type="button" class="btn btn-primary">Confirm
+                    </button>
+                </div>
+
+            </div>
+
+            <div class="col-lg-4">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <img class="imgSize" src="var/www/html/phpProject/images/coffee.png">
+                    </div>
+                    <div class="col-lg-3">
+                        <img class="imgSize" src="./images/coffee.png">
+                    </div>
+                    <div class="col-lg-3">
+                        <img class="imgSize" src="./images/coffee.png">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+
+
+
+    </div>
+
+
+
+</body>
+
+</html>
