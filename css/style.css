@@ -1,0 +1,16 @@
+.row{
+    margin-top: 1%;
+}
+
+.myOrder{
+    margin-top: 2%;
+}
+.orderData{
+    float: right;
+}
+
+.dropDownData{
+    /*display: inline;*/
+    width: 10%;
+    float: right;
+}
