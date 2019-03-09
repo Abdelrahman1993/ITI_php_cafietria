@@ -9,18 +9,18 @@
 
  <div class="bg-warning text-black w-75 .h-75 m-5 mb-4 border-danger rounded mx-auto pt-4 bg-warning ">
     <h1 class="font-weight-bold d-flex justify-content-center mb-3">Add Product</h1>
-    <form class="p-5">
+    <form class="p-5" action="add_new_product.php">
       <div class="form-group row">
         <label for="example-text-input" class="col-2 col-form-label "><h3 class="font-weight-bold">Product</h3></label>
         <div class="col-10">
-          <input class="form-control border-danger" type="text" value="Artisanal kale" id="example-text-input">
+          <input name="product_name" class="form-control border-danger" type="text" value="Artisanal kale" id="example-text-input">
         </div>
       </div>
 
       <div class="form-group row">
         <label for="example-number-input" class="col-2 col-form-label"><h3 class="font-weight-bold">Price</h3></label>
         <div class="col-10">
-          <input class="form-control border-danger" type="number" value="" id="example-number-input">
+          <input name="price" class="form-control border-danger" type="number" value="" id="example-number-input">
         </div>
       </div>
 
@@ -28,7 +28,7 @@
       <div class="form-group row">
         <label for="example-number-input border-danger" class="col-2 col-form-label"><h3 class="font-weight-bold">Category</h3></label>
         <div class="col-10">
-          <select class="form-control form-control-lg border-danger ">
+          <select name="category" class="form-control form-control-lg border-danger ">
             <option>Large select</option>
             <option>Large select</option>
             <option>Large select</option>
@@ -40,7 +40,7 @@
       
 
       <div class="form-group row"> 
-        <label for="example-number-input" class="col-2 col-form-label"><h3 class="font-weight-bold">Category</h3></label>
+        <label for="example-number-input" class="col-2 col-form-label"><h3 class="font-weight-bold">Product image</h3></label>
 
         <div class="col-10">
           <div class="input-group">
@@ -48,15 +48,11 @@
               <span class="input-group-text border-danger bg-danger text-white" id="inputGroupFileAddon01">Upload</span>
             </div>
             <div class="custom-file ">
-              <input type="file" class="custom-file-input bg-danger text-white" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+              <input name="product_image" type="file" class="custom-file-input bg-danger text-white" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
               <label class="custom-file-label border-danger " for="inputGroupFile01">Choose file</label>
-
-               
             </div>
           </div>
         </div>
-
-
       </div>
       <br>
          <div class="form-group row .text-center d-flex justify-content-center mb-3"> 
