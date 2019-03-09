@@ -26,7 +26,7 @@ CREATE TABLE `Category` (
   `id` int(6) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -35,6 +35,7 @@ CREATE TABLE `Category` (
 
 LOCK TABLES `Category` WRITE;
 /*!40000 ALTER TABLE `Category` DISABLE KEYS */;
+INSERT INTO `Category` VALUES (1,'cat 1'),(2,'cat 2'),(3,'cat 3');
 /*!40000 ALTER TABLE `Category` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -51,6 +52,7 @@ CREATE TABLE `Orders` (
   `cost` int(11) DEFAULT NULL,
   `room_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
+  `order_date` date NOT NULL,
   PRIMARY KEY (`id`),
   KEY `room_id` (`room_id`),
   KEY `user_id` (`user_id`),
@@ -185,4 +187,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-03-05 13:43:42
+-- Dump completed on 2019-03-09 13:13:53

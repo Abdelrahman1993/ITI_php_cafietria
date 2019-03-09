@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="764e5a89-384c-4df5-b4be-f4c33aba76c1" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/views/add_product.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/add_product.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cafeteria.sql" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -16,7 +16,7 @@
         <entry file="file://$PROJECT_DIR$/views/add_product.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="601">
-              <caret line="50" column="6" selection-start-line="50" selection-start-column="6" selection-end-line="50" selection-end-column="6" />
+              <caret line="50" selection-start-line="50" selection-end-line="50" />
             </state>
           </provider>
         </entry>
@@ -75,11 +75,6 @@
               <item name="php_project" type="b2602c69:ProjectViewProjectNode" />
               <item name="php_project" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="php_project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="php_project" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -121,18 +116,17 @@
       <option name="presentableId" value="Default" />
       <updated>1552075149504</updated>
       <workItem from="1552075156102" duration="5000" />
-      <workItem from="1552125622032" duration="1797000" />
+      <workItem from="1552125622032" duration="2462000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4733000" />
+    <option name="totallyTimeSpent" value="5398000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="71" y="25" width="1849" height="1055" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1595092" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1595092" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -145,7 +139,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.3289183" />
+      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.3289183" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -187,7 +181,7 @@
     <entry file="file://$PROJECT_DIR$/views/add_product.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="601">
-          <caret line="50" column="6" selection-start-line="50" selection-start-column="6" selection-end-line="50" selection-end-column="6" />
+          <caret line="50" selection-start-line="50" selection-end-line="50" />
         </state>
       </provider>
     </entry>
