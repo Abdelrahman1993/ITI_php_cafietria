@@ -29,15 +29,25 @@
         <label for="example-number-input border-danger" class="col-2 col-form-label"><h3 class="font-weight-bold">Category</h3></label>
         <div class="col-10">
           <select name="category" class="form-control form-control-lg border-danger ">
-            <option>Large select</option>
-            <option>Large select</option>
-            <option>Large select</option>
-            <option>Large select</option>
-            <option>Large select</option>
+            <?php
+              require './connect.php';
+              $sql = "select * from Category";
+              if ($result = mysqli_query($con, $sql)) {
+                $rows_count = mysqli_num_rows($result);
+                while ($row = mysqli_fetch_assoc($result)) {
+                  echo '<option value='.$row['id'].'>'.$row['name'].'</option>';
+                }
+                /* free result set */
+                $result->free();
+              }
+              else{
+                echo mysqli_error($con);
+              }
+              mysqli_close($con);
+            ?>
           </select>
         </div>
       </div>
-      
 
       <div class="form-group row"> 
         <label for="example-number-input" class="col-2 col-form-label"><h3 class="font-weight-bold">Product image</h3></label>
