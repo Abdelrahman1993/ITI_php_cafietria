@@ -9,9 +9,9 @@ input {
   font-size: 1.6rem;
 }
 
-/* -------------------------------- 
+/* --------------------------------
 
-Main Components 
+Main Components
 
 -------------------------------- */
 .cd-accordion-menu {
@@ -134,6 +134,23 @@ ol, ul {
 
 .head_menu{
   font-size: 200%;
-  color: red;
+  color: green;
   text-align: center;
+}
+.rowOfProd{
+  /*padding: 1% 0% 1% 0;*/
+  /*padding: 1%;*/
+
+}
+.prodData {
+  max-width: 22%;
+  margin: 1.1%;
+  border: 2px solid #28a745;
+  text-align: center;
+}
+
+h5{
+  position: relative;
+  top: 13%;
+  left: 11%;
 }
