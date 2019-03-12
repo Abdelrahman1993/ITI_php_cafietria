@@ -16,7 +16,9 @@ $_SESSION['userId'] = 4;
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
+
 <body>
+
     <div class="container-fluid" id="wrapper">
         <div class="row">
             <div class="col-lg-12">
@@ -26,22 +28,17 @@ $_SESSION['userId'] = 4;
                     </div>
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="#">Home</a></li>
-                        <li><a href="#">My Orders</a></li>
+                        <li><a href="#">Products</a></li>
+                        <li><a href="#">Users</a></li>
+                        <li><a href="#">Manual Order</a></li>
+                        <li><a href="#">Checks</a></li>
                     </ul>
-                    <form class="navbar-form navbar-left" action="/action_page.php">
-                        <div class="input-group">
-                            <input type="text" id="search" class="form-control" placeholder="Search" name="search">
-                            <div class="input-group-btn">
-                                <button class="btn btn-default" type="submit">
-                                    <i class="glyphicon glyphicon-search"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+
                     <div style="margin-left: 1000px; width:300px;">
                         <img src="./images/person.png" width="50px" height="50px" />
-                        <a href="#">User Name</a>
+                        <a href="#">Admin</a>
                     </div>
+
 
                 </nav>
             </div>
@@ -50,37 +47,20 @@ $_SESSION['userId'] = 4;
 
         <div class="row">
             <div id="side-bar" class="col-lg-4">
-                <form method="post" action="saveOrder.php"  >
-                <input type="hidden" name="order_data" id="order_data">
+            <form method="post" action="saveOrder.php" >
                 <div id="orders">
-               
-                <!-- action="javascript:save_user_order();" -->
-                     <!-- <div>
-                        <span class="orderName">tea</span>
-                        <span id="orderCount">0</span>
-                        <button  type="button" class="btn btn-info increment">
-                            <span class="glyphicon glyphicon-plus"></span>
-                        </button>
-                        <button  type="button" class="btn btn-info decrement">
-                            <span class="glyphicon glyphicon-minus"></span>
-                        </button>
-                        <span class="orderName">EGP</span>
-                        <span class="orderPrice" >0</span>
-                        <button type="button" class="btn btn-default">
-                            <span class="glyphicon glyphicon-remove"></span>
-                        </button>
-                     </div> -->
-                
-                 </div>
+
+
+                </div>
 
                 <div>
-                    <span class="orderName" >Notes :</span><br>
-                    <textarea id="notes" name="notes"></textarea>
+                    <span class="orderName">Notes :</span><br>
+                    <textarea id="notes"></textarea>
                 </div>
                 <div>
                     <span class="orderName">Room : </span>
-                    <select name="room" class="form-control form-control-sm">
-                        <!-- <option selected>Select your Room</option> -->
+                    <select class="form-control form-control-sm">
+                        <option selected>Select your Room</option>
                         <?php
                         $sql= "select * from Room";
                         if($result = mysqli_query($conn, $sql)){
@@ -91,25 +71,11 @@ $_SESSION['userId'] = 4;
                                 }
                             }
                         }
-                       
-
                         ?>
                     </select>
-                    <?php
-                        if(isset($_GET['err'])){
-                            if(strpos($_GET['err'], "1")) 
-                            echo "<div style='color:red'>Please enter Room Number!</div>";
-                        }
-                    ?>
                 </div>
                 <br>
                 <hr class="style5">
-                <?php
-                        if(isset($_GET['err'])){
-                            if(strpos($_GET['err'], "2")) 
-                            echo "<div style='color:red'>Please enter your Order!</div>";
-                        }
-                    ?>
                 <br>
                 <div class="confirm">
                     <span class="orderName">EGP </span>
@@ -119,12 +85,39 @@ $_SESSION['userId'] = 4;
                     <button type="submit" name="submit" class="btn btn-primary">Confirm
                     </button>
                 </div>
+                </form>
 
-      </form>
-                 
             </div>
 
+
             <div class="col-lg-7">
+                <strong style="display: inline;">Add to User : </strong>
+                <form class="navbar-form navbar-brand" style="margin-right: 5px" action="/action_page.php">
+                    <div class="input-group">
+                        <input type="text" id="search" class="form-control" placeholder="Search" name="search">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" type="submit">
+                                <i class="glyphicon glyphicon-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
+                <select class="form-control form-control-sm">
+                    <option selected>Select User </option>
+                    <?php
+                           $sql= "select * from User";
+                           if($result = mysqli_query($conn, $sql)){
+                               if(mysqli_num_rows($result) > 0){ 
+                                   while($row = mysqli_fetch_array($result)){
+                                    echo '<option value="'.$row['name'].'" >'.$row['name'].'</option>';
+                                   }
+                               }
+                           }
+                    ?>
+                </select><br>
+                <hr class="style5">
+               
                 <div class="row">
                     <h1>Orders</h1>
                    <?php
@@ -141,7 +134,7 @@ $_SESSION['userId'] = 4;
                             }
                         }
                    ?>
-                </div>
+            </div>
             </div>
         </div>
     </div>
