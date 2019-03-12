@@ -1,7 +1,7 @@
 <?php
 include('dbConnection.php');
 session_start();
-$_SESSION['userId'] = 4;
+$_SESSION['userId'] = 5;
 ?>
 
 <!DOCTYPE html>
@@ -36,10 +36,16 @@ $_SESSION['userId'] = 4;
 
                     <div style="margin-left: 1000px; width:300px;">
                         <img src="./images/person.png" width="50px" height="50px" />
-                        <a href="#">Admin</a>
+                        <a href="#">
+                        <?php
+                                $stmt = $con->prepare("SELECT name FROM User WHERE id= ?");
+                                $stmt->execute(array($_SESSION['userId']));
+                                while ($row = $stmt->fetch()) {
+                                     echo $row['name'];
+                                }
+                        ?>
+                        </a>
                     </div>
-
-
                 </nav>
             </div>
 
@@ -48,6 +54,7 @@ $_SESSION['userId'] = 4;
         <div class="row">
             <div id="side-bar" class="col-lg-4">
             <form method="post" action="saveOrder.php" >
+            <input type="hidden" name="order_data" id="order_data">
                 <div id="orders">
 
 
@@ -55,26 +62,36 @@ $_SESSION['userId'] = 4;
 
                 <div>
                     <span class="orderName">Notes :</span><br>
-                    <textarea id="notes"></textarea>
+                    <textarea id="notes" name="notes" ></textarea>
                 </div>
                 <div>
                     <span class="orderName">Room : </span>
-                    <select class="form-control form-control-sm">
+                    <select name="room" class="form-control form-control-sm">
                         <option selected>Select your Room</option>
                         <?php
-                        $sql= "select * from Room";
-                        if($result = mysqli_query($conn, $sql)){
-                            if(mysqli_num_rows($result) > 0){ 
-                                while($row = mysqli_fetch_array($result)){
-                                    echo '<option value="'.$row['ext'].'" >'.$row['ext'].'</option>';
-                                    
-                                }
-                            }
+                        $stmt = $con->prepare("SELECT * FROM Room");
+                        $stmt->execute();
+                        while ($row = $stmt->fetch()) {
+                            echo '<option value="'.$row['ext'].'" >'.$row['ext'].'</option>';
                         }
                         ?>
                     </select>
                 </div>
                 <br>
+                    <div>
+                    <strong style="display: inline;">Add to User : </strong>
+                    <select name="user_name" class="form-control form-control-sm">
+                        <option selected>Select User </option>
+                        <?php
+                            $stmt = $con->prepare("SELECT * FROM User");
+                            $stmt->execute();
+                            while ($row = $stmt->fetch()) {
+                                echo '<option value="'.$row['name'].'" >'.$row['name'].'</option>';
+                            }
+                        ?>
+                    </select><br>
+                    </div>
+
                 <hr class="style5">
                 <br>
                 <div class="confirm">
@@ -86,13 +103,8 @@ $_SESSION['userId'] = 4;
                     </button>
                 </div>
                 </form>
-
             </div>
-
-
-            <div class="col-lg-7">
-                <strong style="display: inline;">Add to User : </strong>
-                <form class="navbar-form navbar-brand" style="margin-right: 5px" action="/action_page.php">
+            <form class="navbar-form navbar-brand" style="margin-right: 5px" action="/action_page.php">
                     <div class="input-group">
                         <input type="text" id="search" class="form-control" placeholder="Search" name="search">
                         <div class="input-group-btn">
@@ -103,36 +115,23 @@ $_SESSION['userId'] = 4;
                     </div>
                 </form>
 
-                <select class="form-control form-control-sm">
-                    <option selected>Select User </option>
-                    <?php
-                           $sql= "select * from User";
-                           if($result = mysqli_query($conn, $sql)){
-                               if(mysqli_num_rows($result) > 0){ 
-                                   while($row = mysqli_fetch_array($result)){
-                                    echo '<option value="'.$row['name'].'" >'.$row['name'].'</option>';
-                                   }
-                               }
-                           }
-                    ?>
-                </select><br>
+            <div class="col-lg-7">
+              
+
                 <hr class="style5">
                
                 <div class="row">
                     <h1>Orders</h1>
                    <?php
-                        $sql= "select * from Products";
-                        if($result = mysqli_query($conn, $sql)){
-                            if(mysqli_num_rows($result) > 0){ 
-                                while($row = mysqli_fetch_array($result)){
-                                    echo '<div class="col-lg-3">';
-                                    echo '<img alt="'.$row['price'].'" name="'.$row['name'].'" class="imgSize" id="'.$row['id'].'" src="'.$row['img_path'].'" /><br>';
-                                    echo  '<strong class="productName">'.$row['name'].'</strong><br>';
-                                    echo '<strong> price:</strong><strong class="price">'.$row['price'].'</strong><strong> EGP</strong>';
-                                    echo ' </div>';
-                                }
-                            }
-                        }
+                     $stmt = $con->prepare("SELECT * FROM Products");
+                     $stmt->execute();
+                     while ($row = $stmt->fetch()) {
+                        echo '<div class="col-lg-3">';
+                        echo '<img alt="'.$row['price'].'" name="'.$row['name'].'" class="imgSize" id="'.$row['id'].'" src="'.$row['img_path'].'" /><br>';
+                        echo  '<strong class="productName">'.$row['name'].'</strong><br>';
+                        echo '<strong> price:</strong><strong class="price">'.$row['price'].'</strong><strong> EGP</strong>';
+                        echo ' </div>';
+                     }
                    ?>
             </div>
             </div>

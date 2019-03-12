@@ -1,7 +1,7 @@
 <?php
 include('dbConnection.php');
 session_start();
-$_SESSION['userId'] = 4;
+$_SESSION['userId'] = 2;
 ?>
 
 <!DOCTYPE html>
@@ -40,7 +40,15 @@ $_SESSION['userId'] = 4;
                     </form>
                     <div style="margin-left: 1000px; width:300px;">
                         <img src="./images/person.png" width="50px" height="50px" />
-                        <a href="#">User Name</a>
+                        <a href="#">
+                        <?php
+                                $stmt = $con->prepare("SELECT name FROM User WHERE id= ?");
+                                $stmt->execute(array($_SESSION['userId']));
+                                while ($row = $stmt->fetch()) {
+                                     echo $row['name'];
+                                }
+                        ?>
+                        </a>
                     </div>
 
                 </nav>
@@ -53,23 +61,6 @@ $_SESSION['userId'] = 4;
                 <form method="post" action="saveOrder.php"  >
                 <input type="hidden" name="order_data" id="order_data">
                 <div id="orders">
-               
-                <!-- action="javascript:save_user_order();" -->
-                     <!-- <div>
-                        <span class="orderName">tea</span>
-                        <span id="orderCount">0</span>
-                        <button  type="button" class="btn btn-info increment">
-                            <span class="glyphicon glyphicon-plus"></span>
-                        </button>
-                        <button  type="button" class="btn btn-info decrement">
-                            <span class="glyphicon glyphicon-minus"></span>
-                        </button>
-                        <span class="orderName">EGP</span>
-                        <span class="orderPrice" >0</span>
-                        <button type="button" class="btn btn-default">
-                            <span class="glyphicon glyphicon-remove"></span>
-                        </button>
-                     </div> -->
                 
                  </div>
 
@@ -82,16 +73,11 @@ $_SESSION['userId'] = 4;
                     <select name="room" class="form-control form-control-sm">
                         <!-- <option selected>Select your Room</option> -->
                         <?php
-                        $sql= "select * from Room";
-                        if($result = mysqli_query($conn, $sql)){
-                            if(mysqli_num_rows($result) > 0){ 
-                                while($row = mysqli_fetch_array($result)){
-                                    echo '<option value="'.$row['ext'].'" >'.$row['ext'].'</option>';
-                                    
-                                }
-                            }
+                        $stmt = $con->prepare("SELECT * FROM Room");
+                        $stmt->execute();
+                        while ($row = $stmt->fetch()) {
+                            echo '<option value="'.$row['ext'].'" >'.$row['ext'].'</option>';
                         }
-                       
 
                         ?>
                     </select>
@@ -119,7 +105,6 @@ $_SESSION['userId'] = 4;
                     <button type="submit" name="submit" class="btn btn-primary">Confirm
                     </button>
                 </div>
-
       </form>
                  
             </div>
@@ -128,17 +113,14 @@ $_SESSION['userId'] = 4;
                 <div class="row">
                     <h1>Orders</h1>
                    <?php
-                        $sql= "select * from Products";
-                        if($result = mysqli_query($conn, $sql)){
-                            if(mysqli_num_rows($result) > 0){ 
-                                while($row = mysqli_fetch_array($result)){
-                                    echo '<div class="col-lg-3">';
-                                    echo '<img alt="'.$row['price'].'" name="'.$row['name'].'" class="imgSize" id="'.$row['id'].'" src="'.$row['img_path'].'" /><br>';
-                                    echo  '<strong class="productName">'.$row['name'].'</strong><br>';
-                                    echo '<strong> price:</strong><strong class="price">'.$row['price'].'</strong><strong> EGP</strong>';
-                                    echo ' </div>';
-                                }
-                            }
+                        $stmt = $con->prepare("SELECT * FROM Products");
+                        $stmt->execute();
+                        while ($row = $stmt->fetch()) {
+                            echo '<div class="col-lg-3">';
+                            echo '<img alt="'.$row['price'].'" name="'.$row['name'].'" class="imgSize" id="'.$row['id'].'" src="'.$row['img_path'].'" /><br>';
+                            echo  '<strong class="productName">'.$row['name'].'</strong><br>';
+                            echo '<strong> price:</strong><strong class="price">'.$row['price'].'</strong><strong> EGP</strong>';
+                            echo ' </div>';
                         }
                    ?>
                 </div>
