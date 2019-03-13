@@ -1,5 +1,5 @@
 <?php
-$dsn    = 'mysql:host=localhost;dbname=cafeteria';
+$dsn    = 'mysql:host=localhost;dbname=LastCafeteria';
 $user   = 'root';
 $pass   = '';
 $option = array(
@@ -7,7 +7,7 @@ $option = array(
 try{
     $con = new PDO($dsn,$user,$pass ,$option);
     $con ->setAttribute(PDO::ATTR_ERRMODE , PDO::ERRMODE_EXCEPTION);
-    echo 'you are connect successfully to the database';
+    
 }
 catch(PDOException $e)
 {
