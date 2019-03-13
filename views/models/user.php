@@ -27,7 +27,7 @@ class User
 
  public function Edit_User()
  {
-    $query="update User,Room set User.name=?,Room.room_number=?,Room.ext =? where Room.id=User.room_id and id =?";
+    $query="update User,Room set User.name=?,Room.room_number=?,Room.ext =? where Room.id=User.room_id and User.id =?";
     $edit_statm=$this->connector->prepare($query);
     $edit_parameters=[$this->name,$this->room_num,$this->extra_room,$this->id];
     $edit_statm->execute($edit_parameters);
@@ -52,15 +52,32 @@ public function deleteUser()
 
 }
 
-public function get_user()
+public function getUser()
 {
-  $query="select * from  User where id = ? ";
+  
+  $query="select name,User.id,room_number,ext,img_path from User , Room  where Room.id=User.room_id and User.id =? ";
   $param=[$this->id];
   $select_product=$this->connector->prepare($query);
   $select_product->execute($param);
   return $select_product;
 }
 
+public function getRooms()
+{
+     $query="select room_number from User , Room  where Room.id=User.room_id ";
+     $select_rooms=$this->connector->prepare($query);
+      $select_rooms->execute();
+    return $select_rooms;
+}
+
+public function getRoomsExt()
+{
+     $query="select ext from User , Room  where Room.id=User.room_id ";
+     $select_rooms=$this->connector->prepare($query);
+      $select_rooms->execute();
+    return $select_rooms;
+
+}
 }
 
 ?>
