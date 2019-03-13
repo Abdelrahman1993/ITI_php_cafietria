@@ -1,8 +1,8 @@
 <?php
 session_start();
+print_r($_SESSION);
+$noHeader = '';
 include 'init.php'; 
-include $tpl . 'header.php';
-
 if($_SERVER['REQUEST_METHOD'] == 'POST' )
 {
     $username = $_POST['user'];
@@ -10,19 +10,21 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' )
     $hashedPass = sha1($password);
     
        //check if user exist in the db
-       $stmt = $con->prepare("SELECT name, password FROM user WHERE name = ? AND password = ? ");
+       $stmt = $con->prepare("SELECT name, password FROM user WHERE name = ? AND password = ? AND GroupID = 1 ");
        $stmt->execute(array($username , $hashedPass));
        $count = $stmt->rowCount();
-       echo $count;
+    if($count > 0)
+    {
+        $_SESSION['User'] = $username;
+        header('location:AdminBoard.php');
+        exit();
+    }elseif($count = 0){
+        $_SESSION['User'] = $username;
+        header('location:UserAccout.php');
+    }
 
-       if(isset($_SESSION['User']) && $count > 0 )
-       {
-           header('location:test1.php');
-       }
-       else{
-        header('location:test2.php');
-        }
-}
+
+} 
 ?>
 
 <form class="login" action="<?php echo $_SERVER['PHP_SELF']?>" method="POST">
