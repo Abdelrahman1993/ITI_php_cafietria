@@ -2,11 +2,11 @@
 
 $dsn    = 'mysql:host=localhost;dbname=ITI_Cafeteria';
 $user   = 'root';
-$pass   = '01111451253';
+// $pass   = '01111451253';
 $option = array(
     PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8', );
 try {
-    $con = new PDO($dsn,$user,$pass ,$option);
+    $con = new PDO($dsn,$user,"" ,$option);
     $con ->setAttribute(PDO::ATTR_ERRMODE , PDO::ERRMODE_EXCEPTION);
     
 }

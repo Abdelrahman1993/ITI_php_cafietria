@@ -12,8 +12,30 @@ let orderList = document.getElementsByClassName('orderList');
 let priceInput = document.getElementById('priceInput');
 let userOrderData = document.getElementById('order_data');
 let totalP;
-let orderData = {};
-let flag = 0;
+
+
+if (localStorage.getItem('productPrice') == null) {
+    var productPrice = {};
+} else {
+    var productPrice = JSON.parse(localStorage.getItem('productPrice'));
+}
+
+if (localStorage.getItem('orderData') == null) {
+    var orderData = {};
+} else {
+    var orderData = JSON.parse(localStorage.getItem('orderData'));
+    console.log('llll = ' + localStorage.getItem('orderData'));
+    renderElement(orderData,productPrice);
+}
+
+
+if (localStorage.getItem('clickableImage') == null) {
+    var clickableImage = {};
+} else {
+    var clickableImage = JSON.parse(localStorage.getItem('clickableImage'));
+    img_click(clickableImage);
+}
+
 
 searchInput.addEventListener('keyup', () => {
     console.log("search");
@@ -32,22 +54,20 @@ searchInput.addEventListener('keyup', () => {
 for (let i = 0; i < orderImage.length; i++) {
     orderImage[i].addEventListener('click', (event) => {
         orderImage[i].style.pointerEvents = "none";
-
+        clickableImage[event.target.name] = 'none';
+        localStorage.setItem('clickableImage', JSON.stringify(clickableImage));
+        console.log("clicabel = " + localStorage.getItem('clickableImage'));
         totalP = event.target.alt;
         let myorder = document.createElement('div');
         myorder.setAttribute('class', 'orderList');
         myorder.setAttribute('name', 'order_list');
 
-        // let hiddenInput=document.createElement('input');
-        // hiddenInput.setAttribute('type','hidden');
-        // hiddenInput.setAttribute('name','orderData');
-        // hiddenInput.appendChild(document.createTextNode( JSON.stringify(orderData)));
-        // myorder.appendChild(hiddenInput);
-
         let name = document.createElement('span');
         name.setAttribute('name', 'order_name');
+        name.setAttribute('id', event.target.alt);
         name.appendChild(document.createTextNode(event.target.name));
-
+        productPrice[event.target.name]=event.target.alt;
+        localStorage.setItem('productPrice',JSON.stringify(productPrice));
 
         let count = document.createElement('span');
         count.setAttribute('class', 'orderCount');
@@ -58,11 +78,10 @@ for (let i = 0; i < orderImage.length; i++) {
         myorder.appendChild(count);
 
         let ord_name = event.target.name;
-        // Object.assign(orderData, { ord_name: count.innerHTML });
         console.log(count.innerHTML);
         orderData[ord_name] = count.innerHTML;
         userOrderData.value = JSON.stringify(orderData);
-        // console.log("sdsd = " +JSON.stringify(orderData) );
+        localStorage.setItem('orderData', JSON.stringify(orderData));
         let plusBtn = document.createElement('button');
         plusBtn.setAttribute('type', 'button');
         plusBtn.setAttribute('id', event.target.id);
@@ -71,7 +90,7 @@ for (let i = 0; i < orderImage.length; i++) {
         spanPlusBtn.setAttribute('class', 'glyphicon glyphicon-plus')
         plusBtn.appendChild(spanPlusBtn);
         plusBtn.onclick = (event2) => {
-            incrementAction(event, event2);
+            incrementAction(event2);
         };
         myorder.appendChild(plusBtn);
 
@@ -83,7 +102,7 @@ for (let i = 0; i < orderImage.length; i++) {
         minusBtn.appendChild(spanMinusBtn);
 
         minusBtn.onclick = (event2) => {
-            decrementAction(event, event2);
+            decrementAction(event2);
         }
         myorder.appendChild(minusBtn);
 
@@ -107,11 +126,14 @@ for (let i = 0; i < orderImage.length; i++) {
             let ord_name = event.target.name;
             delete orderData[ord_name];
             userOrderData.value = JSON.stringify(orderData);
-            // console.log("sdsd = " +JSON.stringify(orderData) );
-            removeAction(event2)
+            localStorage.setItem('orderData', JSON.stringify(orderData));
+            clickableImage[ord_name] = 'auto';
+            localStorage.setItem('clickableImage', JSON.stringify(clickableImage));
+            console.log("aaaa = " + localStorage.getItem('clickableImage'));
+            removeAction(event2);
+            img_click(clickableImage);
         };
         myorder.appendChild(removeBtn);
-
         orders.appendChild(myorder);
         calculateTotalPrice();
     });
@@ -127,39 +149,30 @@ function calculateTotalPrice() {
     priceInput.value = total;
 }
 
-function incrementAction(event, event2) {
-    // console.log("hello");
-    // console.log(event2.target.previousElementSibling.innerHTML);
+function incrementAction(event2) {
     let val = parseInt(event2.target.previousElementSibling.innerHTML);
     val++;
-    totalP = val * parseInt(event.target.alt);
+    totalP = val * event2.target.parentElement.childNodes[0].attributes.id.value;
     event2.target.parentElement.childNodes[5].innerHTML = totalP;
-    console.log(event2.target.parentElement);
-    console.log("total = " + totalP);
     event2.target.previousElementSibling.innerHTML = val;
-    let ord_name = event.target.name;
+    let ord_name = event2.target.parentElement.childNodes[0].innerHTML;
     orderData[ord_name] = val;
     userOrderData.value = JSON.stringify(orderData);
-    // console.log("sdsd = " +JSON.stringify(orderData) );
-    // console.log("ord = " + ord_name);
+    localStorage.setItem('orderData', JSON.stringify(orderData));
     calculateTotalPrice();
 }
 
-function decrementAction(event, event2) {
-    // console.log(event2.target.previousElementSibling.previousElementSibling.innerHTML);
-    let val = parseInt(event2.target.previousElementSibling.previousElementSibling.innerHTML);
+function decrementAction(event2) {
+    let val = parseInt(event2.target.parentElement.childNodes[1].innerHTML);
     if (val > 0) {
         val--;
-        totalP = val * parseInt(event.target.alt);
+        totalP = val * event2.target.parentElement.childNodes[0].attributes.id.value;
         event2.target.parentElement.childNodes[5].innerHTML = totalP;
-        console.log(event.target.parentElement.childNodes[5]);
-        console.log("total = " + totalP);
-        event2.target.previousElementSibling.previousElementSibling.innerHTML = val;
-        let ord_name = event.target.name;
+        event2.target.parentElement.childNodes[1].innerHTML = val;
+        let ord_name = event2.target.parentElement.childNodes[0].innerHTML;
         orderData[ord_name] = val;
         userOrderData.value = JSON.stringify(orderData);
-        // console.log("ord = " + ord_name);
-        // console.log("sdsd = " +JSON.stringify(orderData) ); 
+        localStorage.setItem('orderData', JSON.stringify(orderData));
     }
     calculateTotalPrice();
 }
@@ -168,8 +181,93 @@ function removeAction(event2) {
     event2.target.parentElement.remove();
     calculateTotalPrice();
 }
-// function save_user_order(){
-    // sessionStorage.setItem("orderData", JSON.stringify(orderData));
-    // window.location.href="saveOrder.php?data="+JSON.stringify(orderData);
-// }
 
+function renderElement(orderData,productPrice) {
+    Object.keys(orderData).forEach(function (key) {
+        console.log('Key : ' + key + ', Value : ' + orderData[key])
+        let myorder = document.createElement('div');
+        myorder.setAttribute('class', 'orderList');
+        myorder.setAttribute('name', 'order_list');
+
+        let name = document.createElement('span');
+        name.setAttribute('name', 'order_name');
+         name.setAttribute('id', productPrice[key]);
+        name.appendChild(document.createTextNode(key));
+
+
+        let count = document.createElement('span');
+        count.setAttribute('class', 'orderCount');
+        count.setAttribute('name', 'order_count');
+        count.appendChild(document.createTextNode(orderData[key]))
+
+        myorder.appendChild(name);
+        myorder.appendChild(count);
+
+        let plusBtn = document.createElement('button');
+        plusBtn.setAttribute('type', 'button');
+        plusBtn.setAttribute('class', 'btn btn-info increment');
+        let spanPlusBtn = document.createElement('span');
+        spanPlusBtn.setAttribute('class', 'glyphicon glyphicon-plus')
+        plusBtn.appendChild(spanPlusBtn);
+        plusBtn.onclick = (event2) => {
+            incrementAction(event2);
+        };
+        myorder.appendChild(plusBtn);
+
+        let minusBtn = document.createElement('button');
+        minusBtn.setAttribute('type', 'button');
+        minusBtn.setAttribute('class', 'btn btn-info decrement');
+        let spanMinusBtn = document.createElement('span');
+        spanMinusBtn.setAttribute('class', 'glyphicon glyphicon-minus')
+        minusBtn.appendChild(spanMinusBtn);
+
+        minusBtn.onclick = (event2) => {
+            decrementAction(event2);
+        }
+        myorder.appendChild(minusBtn);
+
+        let EGP = document.createElement('span');
+        EGP.appendChild(document.createTextNode("EGP"))
+        myorder.appendChild(EGP);
+
+        let price = document.createElement('span');
+        price.setAttribute('class', 'productPrice');
+        price.appendChild(document.createTextNode(totalP))
+        myorder.appendChild(price);
+
+        let removeBtn = document.createElement('button');
+        removeBtn.setAttribute('type', 'button');
+        removeBtn.setAttribute('class', 'btn btn-default remove');
+        let spanremoveBtn = document.createElement('span');
+        spanremoveBtn.setAttribute('class', 'glyphicon glyphicon-remove')
+        removeBtn.appendChild(spanremoveBtn);
+        removeBtn.onclick = (event2) => {
+
+            let ord_name = event2.target.parentElement.childNodes[0].innerHTML;
+            delete orderData[ord_name];
+            userOrderData.value = JSON.stringify(orderData);
+            localStorage.setItem('orderData', JSON.stringify(orderData));
+            event2.target.style.pointerEvents='auto';
+            clickableImage[ord_name] = 'auto';
+            localStorage.setItem('clickableImage', JSON.stringify(clickableImage));
+            console.log("aaaa = " + localStorage.getItem('clickableImage'));
+            removeAction(event2);
+            img_click(clickableImage);
+        };
+        myorder.appendChild(removeBtn);
+        orders.appendChild(myorder);
+        calculateTotalPrice();
+    })
+
+}
+function img_click(clickableImage) {
+    Object.keys(clickableImage).forEach(function (key) {
+        console.log('Key : ' + key + ', Value : ' + clickableImage[key])
+        for(let a=0;a<orderImage.length;a++){
+            if(orderImage[a].name==key){
+            orderImage[a].style.pointerEvents = clickableImage[key];
+            }
+        }
+
+    });
+}
