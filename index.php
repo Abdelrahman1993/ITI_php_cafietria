@@ -12,8 +12,9 @@
     $stmt = $con->prepare("SELECT * FROM User WHERE email = ?");
     $stmt->execute(array($username));
     while ($row = $stmt->fetch()) {
-      echo $row['password'];
-      if(password_verify($password , $row['password']))
+      
+      var_dump($row['password']==$password);
+      if(password_verify($password == $row['password']))
       {
         if($row['group_id'] > 0)
         {
