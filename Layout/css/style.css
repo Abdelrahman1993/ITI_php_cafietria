@@ -1,0 +1,176 @@
+body{
+    background-color:#F4F4F4
+}
+
+/*login form */
+
+.login {
+    width: 300px;
+    margin: 100px auto;
+}
+.login input {
+    margin-bottom: 10px;
+}
+.login .form-control{
+    background-color: #eaeaea;
+}
+.login .btn{
+    background-color: #008dde;
+}
+
+@media only screen and (min-width: 600px) {
+  h1 {
+    font-size: 3.2rem;
+  }
+}
+
+input {
+  font-family: "Jaldi", sans-serif;
+  font-size: 1.6rem;
+}
+
+/* --------------------------------
+
+Main Components
+
+-------------------------------- */
+.cd-accordion-menu {
+  background: #4d5158;
+  margin-top: 4%;
+}
+
+.cd-accordion-menu ul {
+  /* by default hide all sub menus */
+  display: none;
+}
+
+.cd-accordion-menu li {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.cd-accordion-menu input[type=checkbox] {
+  position: absolute;
+  opacity: 0;
+}
+
+.cd-accordion-menu label,
+.cd-accordion-menu a {
+  position: relative;
+  display: block;
+  color: #ffffff;
+}
+
+.no-touch .cd-accordion-menu label:hover,
+.no-touch .cd-accordion-menu a:hover {
+  /*background: #52565d;*/
+}
+
+.cd-accordion-menu label::before,
+.cd-accordion-menu label::after,
+.cd-accordion-menu a::after {
+   /*icons */
+  content: '';
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.cd-accordion-menu label {
+  cursor: pointer;
+}
+
+.cd-accordion-menu label::before,
+.cd-accordion-menu label::after {
+  background-image: url(../images/cd-icons.svg);
+  /*background-repeat: no-repeat;*/
+}
+
+.cd-accordion-menu label::before {
+  /* arrow icon */
+  left: 1%;
+  background-position: 0 0;
+  -webkit-transform: translateY(-50%) rotate(-90deg);
+  -moz-transform: translateY(-50%) rotate(-90deg);
+  -ms-transform: translateY(-50%) rotate(-90deg);
+  -o-transform: translateY(-50%) rotate(-90deg);
+  transform: translateY(-50%) rotate(-90deg);
+}
+
+.cd-accordion-menu label::after {
+  /* folder icons */
+  left: 4%;
+  background-position: -16px 0;
+}
+
+
+.cd-accordion-menu input[type=checkbox]:checked+label::before {
+  /* rotate arrow */
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+@media only screen and (min-width: 600px) {
+
+  .cd-accordion-menu label,
+  .cd-accordion-menu a {
+    padding: 24px 24px 24px 82px;
+    font-size: 1.9rem;
+  }
+}
+
+.orderDate{
+  background-color: #0c5460;
+  padding: 0% 0 2% 0;
+}
+.orderDate h1{
+  margin-top: 5%;
+  margin-left: 9%;
+  text-align: left;
+}
+.orderDate div input{
+  height: 120%;
+}
+
+
+ul img{
+  margin: 1% 16% 1% 0;
+}
+ol, ul {
+  list-style: none;
+}
+
+.head_menu{
+  font-size: 200%;
+  color: green;
+  text-align: center;
+}
+.rowOfProd{
+  /*padding: 1% 0% 1% 0;*/
+  /*padding: 1%;*/
+
+}
+.prodData {
+  max-width: 22%;
+  margin: 1.1%;
+  border: 2px solid #28a745;
+  text-align: center;
+}
+
+h5{
+  position: relative;
+  top: 13%;
+  left: 11%;
+}

@@ -1,0 +1,123 @@
+body {
+    font-family: "Lato", sans-serif;
+  }
+  strong#productName{
+    padding-left: 30%;
+  }
+  .product{
+      background-color: black;
+      width: 100px;
+      height: 100px;
+  }
+  img.imgSize{
+    width: 100px;
+    height: 125px;
+    float: left;
+    margin-left: 40px;
+  }
+  #side-bar{
+    background-color: #3385ff;
+    margin-left: 50px;
+    border-radius: 8px;
+  }
+  button.btn.btn-primary{
+    width: 120px;
+    height: 50px;
+    font-size: 25px;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+     margin-bottom: 2%;
+  }
+ div.col-lg-6{
+   background-color: #3385ff;
+   margin-left: 5px;  
+   border-radius: 8px;
+ }
+  .orderName > span{
+    font-family: auto;
+    font-size: 30px;
+    padding-left: 5%;
+    font-style: oblique;
+    color: black;
+  }
+  #orderCount > span{
+    font-family: auto;
+    font-size: 44px;
+    padding-left: 5%;
+    font-style: oblique;
+    color: black;
+  }
+  form.navbar-form.navbar-left{
+    border-color: #101010;
+    margin-left: 10%;
+  }
+  form.navbar-form.navbar-brand{
+    border-color: #101010;
+    margin-left: 56%;
+  }
+  hr.style5 {
+	background-color: #fff;
+	border-top: 2px solid #8c8b8b;
+}
+  #notes{
+    padding-top: 15px;
+    margin-left: 22px;
+    width: 300px;
+  }
+  .confirm{
+      text-align: center;
+  }
+  .confirm.btn{
+      width: 50px;
+  }
+  .sidenav {
+    height: 100%;
+    width: 461px;
+    position: fixed;
+    z-index: 1;
+    top: 10%;
+    left: 7%;
+    background-color: #3385ff;
+    overflow-x: hidden;
+    padding-top: 20px;
+    float: left;
+  }
+  .navbar-inverse .navbar-nav>li>a {
+    color: #9d9d9d;
+    font-size: 20px;
+}
+  .sidenav a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 30px;
+    color: #3385ff;
+    display: block;
+  }
+  a {
+    background-color: transparent;
+    font-size: 20px;
+}
+strong{
+  font-size: 20px;
+}
+  .sidenav a:hover {
+    color: #f1f1f1;
+ 
+  }
+  
+  .main {
+    margin-left: 160px; /* Same as the width of the sidenav */
+    font-size: 28px; /* Increased text to enable scrolling */
+    padding: 0px 10px;
+  }
+  /* div#side-bar.col-lg-5 span#orderCount{
+    font-size : 25px;
+    background-color: #8c8b8b; 
+
+
+  } */
+
+  @media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+  }
+
