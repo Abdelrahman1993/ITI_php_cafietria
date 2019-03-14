@@ -13,7 +13,7 @@
     $stmt->execute(array($username));
     while ($row = $stmt->fetch()) {
       echo $row['password'];
-      if($password == $row['password'])
+      if(password_verify($password , $row['password']))
       {
         if($row['group_id'] > 0)
         {
