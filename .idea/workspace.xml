@@ -2,72 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="69ea4340-004c-414e-adad-092fac47315d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Layout/css/style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Layout/images/1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Layout/images/4.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Layout/js/backend.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Layout/js/userPage.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/add_new_product.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cancleorder.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/editUser.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/includes/template/header.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/includes/template/navbar.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/init.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model/editSessionUser.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/page.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pagination.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/products.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/users.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ITI_Cafeteria.sql" beforeDir="false" afterPath="$PROJECT_DIR$/ITI_Cafeteria.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Layout/css/bootstrap.css" beforeDir="false" afterPath="$PROJECT_DIR$/Layout/css/bootstrap.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Layout/css/bootstrap.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/Layout/css/bootstrap.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Layout/css/myorder.css" beforeDir="false" afterPath="$PROJECT_DIR$/Layout/css/myorder.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Layout/fonts/glyphicons-halflings-regular.eot" beforeDir="false" afterPath="$PROJECT_DIR$/Layout/fonts/glyphicons-halflings-regular.eot" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Layout/fonts/glyphicons-halflings-regular.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Layout/fonts/glyphicons-halflings-regular.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Layout/fonts/glyphicons-halflings-regular.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/Layout/fonts/glyphicons-halflings-regular.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Layout/fonts/glyphicons-halflings-regular.woff" beforeDir="false" afterPath="$PROJECT_DIR$/Layout/fonts/glyphicons-halflings-regular.woff" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Layout/fonts/glyphicons-halflings-regular.woff2" beforeDir="false" afterPath="$PROJECT_DIR$/Layout/fonts/glyphicons-halflings-regular.woff2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Layout/images/11.png" beforeDir="false" afterPath="$PROJECT_DIR$/Layout/images/11.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Layout/images/12.png" beforeDir="false" afterPath="$PROJECT_DIR$/Layout/images/12.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Layout/images/13.png" beforeDir="false" afterPath="$PROJECT_DIR$/Layout/images/13.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Layout/images/14.png" beforeDir="false" afterPath="$PROJECT_DIR$/Layout/images/14.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Layout/images/Coffee.png" beforeDir="false" afterPath="$PROJECT_DIR$/Layout/images/Coffee.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Layout/images/cd-icons.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Layout/images/cd-icons.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Layout/js/bootstrap.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/Layout/js/bootstrap.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Layout/js/jquery-1.12.1.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/Layout/js/jquery-1.12.1.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Layout/js/myorder.js" beforeDir="false" afterPath="$PROJECT_DIR$/Layout/js/myorder.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/add_product.php" beforeDir="false" afterPath="$PROJECT_DIR$/add_product.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/adminPage.php" beforeDir="false" afterPath="$PROJECT_DIR$/adminPage.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/checks.php" beforeDir="false" afterPath="$PROJECT_DIR$/checks.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/reset.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/reset.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dbConnection.php" beforeDir="false" afterPath="$PROJECT_DIR$/dbConnection.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deleteProduct.php" beforeDir="false" afterPath="$PROJECT_DIR$/deleteProduct.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/editProduct.php" beforeDir="false" afterPath="$PROJECT_DIR$/editProduct.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/11.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/11.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/12.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/12.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/13.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/13.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/14.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/14.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/Coffee.png" beforeDir="false" afterPath="$PROJECT_DIR$/img/Coffee.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/cd-icons.svg" beforeDir="false" afterPath="$PROJECT_DIR$/img/cd-icons.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/includes/template/footer.php" beforeDir="false" afterPath="$PROJECT_DIR$/includes/template/footer.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/modernizr.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/modernizr.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/category.php" beforeDir="false" afterPath="$PROJECT_DIR$/model/category.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/editSession.php" beforeDir="false" afterPath="$PROJECT_DIR$/model/editSession.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/products.php" beforeDir="false" afterPath="$PROJECT_DIR$/model/products.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/user.php" beforeDir="false" afterPath="$PROJECT_DIR$/model/user.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/myorder.php" beforeDir="false" afterPath="$PROJECT_DIR$/myorder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/orders.php" beforeDir="false" afterPath="$PROJECT_DIR$/orders.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/partials/_layout.scss" beforeDir="false" afterPath="$PROJECT_DIR$/partials/_layout.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/partials/_mixins.scss" beforeDir="false" afterPath="$PROJECT_DIR$/partials/_mixins.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/partials/_variables.scss" beforeDir="false" afterPath="$PROJECT_DIR$/partials/_variables.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/saveOrder.php" beforeDir="false" afterPath="$PROJECT_DIR$/saveOrder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scss/style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/scss/style.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/userPage.php" beforeDir="false" afterPath="$PROJECT_DIR$/userPage.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -94,11 +29,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="118">
               <caret line="25" column="9" selection-start-line="25" selection-start-column="9" selection-end-line="25" selection-end-column="9" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/composer.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="25">
+              <caret line="1" column="2" selection-start-line="1" selection-start-column="2" selection-end-line="1" selection-end-column="2" />
             </state>
           </provider>
         </entry>
@@ -123,6 +67,7 @@
         <option value="$PROJECT_DIR$/cancleorder.php" />
         <option value="$PROJECT_DIR$/myorder.php" />
         <option value="$PROJECT_DIR$/index.php" />
+        <option value="$PROJECT_DIR$/composer.json" />
       </list>
     </option>
   </component>
@@ -186,12 +131,12 @@
       <workItem from="1552400907639" duration="212000" />
       <workItem from="1552408866054" duration="1090000" />
       <workItem from="1552569368774" duration="797000" />
-      <workItem from="1552572397028" duration="240000" />
+      <workItem from="1552572397028" duration="436000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="22212000" />
+    <option name="totallyTimeSpent" value="22408000" />
   </component>
   <component name="TodoView" selected-index="3">
     <todo-panel id="selected-file">
@@ -204,8 +149,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14831212" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.14831212" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -217,7 +163,7 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.4997233" weight="0.32937366" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.60907125" />
+      <window_info anchor="bottom" id="Terminal" order="9" visible="true" weight="0.60907125" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5002767" side_tool="true" weight="0.32937366" />
       <window_info anchor="bottom" id="Database Changes" order="11" show_stripe_button="false" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -282,6 +228,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="118">
           <caret line="25" column="9" selection-start-line="25" selection-start-column="9" selection-end-line="25" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/composer.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="25">
+          <caret line="1" column="2" selection-start-line="1" selection-start-column="2" selection-end-line="1" selection-end-column="2" />
         </state>
       </provider>
     </entry>
