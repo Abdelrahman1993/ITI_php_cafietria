@@ -64,7 +64,7 @@
                 </td>
                 <td>
                   <h4 class="font-weight-bold m-1">
-                    <?php echo $row['note'] ?>
+<!--                    --><?php //echo $row['note'] ?>
                   </h4>
                 </td>
                 <td>

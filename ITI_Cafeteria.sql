@@ -29,9 +29,6 @@ CREATE TABLE `Category` (
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `Category`
---
 
 LOCK TABLES `Category` WRITE;
 /*!40000 ALTER TABLE `Category` DISABLE KEYS */;
@@ -39,9 +36,7 @@ INSERT INTO `Category` VALUES (1,'cat 1'),(2,'cat 2'),(3,'cat 3'),(4,'drink');
 /*!40000 ALTER TABLE `Category` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `Orders`
---
+
 
 DROP TABLE IF EXISTS `Orders`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -62,9 +57,6 @@ CREATE TABLE `Orders` (
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `Orders`
---
 
 LOCK TABLES `Orders` WRITE;
 /*!40000 ALTER TABLE `Orders` DISABLE KEYS */;
@@ -72,9 +64,6 @@ INSERT INTO `Orders` VALUES (4,'done',40,123,5,'2019-03-12',NULL),(6,'done',40,1
 /*!40000 ALTER TABLE `Orders` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `Products`
---
 
 DROP TABLE IF EXISTS `Products`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -92,9 +81,6 @@ CREATE TABLE `Products` (
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `Products`
---
 
 LOCK TABLES `Products` WRITE;
 /*!40000 ALTER TABLE `Products` DISABLE KEYS */;
@@ -102,9 +88,6 @@ INSERT INTO `Products` VALUES (1,'english tea',40,'Layout/images/7.jpeg','availa
 /*!40000 ALTER TABLE `Products` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `Room`
---
 
 DROP TABLE IF EXISTS `Room`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -117,19 +100,12 @@ CREATE TABLE `Room` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `Room`
---
 
 LOCK TABLES `Room` WRITE;
 /*!40000 ALTER TABLE `Room` DISABLE KEYS */;
 INSERT INTO `Room` VALUES (123,500);
 /*!40000 ALTER TABLE `Room` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `User`
---
 
 DROP TABLE IF EXISTS `User`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -150,19 +126,11 @@ CREATE TABLE `User` (
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `User`
---
-
 LOCK TABLES `User` WRITE;
 /*!40000 ALTER TABLE `User` DISABLE KEYS */;
 INSERT INTO `User` VALUES (5,'awad','awad@gmail.com','$2y$10$KcE//mLkx0PIPQCtjx8bKu19xRWTpJzWpklM4IVALDYbT4/uL4Hd2','Layout/images/4.png',123,0),(6,'samman','sam@gmail.com','$2y$10$WMK8QaxjSDvDUA2vvg7I.eJDuL1D.tKpFQUJXcfsdAtb7S9MwiZK2','Layout/images/7.jpeg',123,0),(7,'medo','medo@gmail.com','$2y$10$KcE//mLkx0PIPQCtjx8bKu19xRWTpJzWpklM4IVALDYbT4/uL4Hd2','Layout/images/4.png',123,1),(9,'sam','sam1@gmail.com','$2y$10$KcE//mLkx0PIPQCtjx8bKu19xRWTpJzWpklM4IVALDYbT4/uL4Hd2','Layout/images/4.png',123,0);
 /*!40000 ALTER TABLE `User` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `orders_products`
---
 
 DROP TABLE IF EXISTS `orders_products`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -177,10 +145,6 @@ CREATE TABLE `orders_products` (
   CONSTRAINT `orders_products_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `Products` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `orders_products`
---
 
 LOCK TABLES `orders_products` WRITE;
 /*!40000 ALTER TABLE `orders_products` DISABLE KEYS */;

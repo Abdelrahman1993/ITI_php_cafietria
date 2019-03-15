@@ -37,4 +37,4 @@
 
 </form>
 
-<?php include $tpl . 'footer.php';?>
+<?php //include $tpl . 'footer.php';?>
