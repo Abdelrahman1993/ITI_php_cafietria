@@ -14,7 +14,7 @@
     while ($row = $stmt->fetch()) {
       
       var_dump($row['password']==$password);
-      if(password_verify($password == $row['password']))
+      if(password_verify($password , $row['password']))
       {
         if($row['group_id'] > 0)
         {

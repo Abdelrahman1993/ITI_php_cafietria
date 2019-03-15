@@ -6,22 +6,22 @@ if(!isset($_SESSION['User']))
     header('Location:index.php');
   }
 
+
 try
 {
 
+	$start = '2019-03-01';
+	$end =  date("Y-m-d");
   if($_SERVER['REQUEST_METHOD']=='POST')
   {
 
-    extract($_POST);
-    if(! isset($dateFrom) ) {
-      $dateFrom = '2019-03-01';
-
-    }
-    if(! isset($dateTo)) {
-      $dateTo =  date("Y-m-d");
-    }
+		extract($_POST);
+		if($start == "" || $end == ""){
+			$start = '2019-03-01';
+			$end =  date("Y-m-d");
+		}
     $query = "SELECT User.id As userID,name,SUM(cost) AS totalCost FROM Orders,User WHERE (Orders.user_id=User.id AND order_status='done' AND User.id=$userID)  GROUP BY user_id";
-    $date=" AND order_date BETWEEN '$dateFrom' AND '$dateTo' ";
+    $date=" AND order_date BETWEEN '$start' AND '$end' ";
 
   }
   else
@@ -38,7 +38,6 @@ try
   {
     $date="";
   }
-  // print_r ($users);
 }
 catch(PDOException $e)
     {
@@ -55,13 +54,14 @@ catch(PDOException $e)
 
 	<link href='https://fonts.googleapis.com/css?family=Jaldi:400,700' rel='stylesheet' type='text/css'>
 
+	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> CSS reset -->
 	<link rel="stylesheet" href="css/reset.css"> <!-- CSS reset -->
-	<link rel="stylesheet" href="css/style.css"> <!-- Resource style -->
+	<!-- <link rel="stylesheet" href="css/style.css"> Resource style -->
 	<script src="js/modernizr.js"></script> <!-- Modernizr -->
 	<title>Multi-Level Accordion Menu | CodyHouse</title>
 
 	<style>
-		body
+		/* body
 		{
 			display: block;
 			padding-right: 404px;
@@ -189,6 +189,7 @@ catch(PDOException $e)
       top: 26%;
       left: 30%
 		}
+		*/
 		.productImg
 		{
 			margin-left: 78px;
@@ -196,6 +197,7 @@ catch(PDOException $e)
       width: 100px;
       height: 100px;
 		}
+		/*
 		.productAmount
 		{
 			font-size: 20px;
@@ -214,7 +216,7 @@ catch(PDOException $e)
 		{
 			width: 40%;
     	height: 30px;
-		}
+		} */
 
 	</style>
 
@@ -232,11 +234,11 @@ catch(PDOException $e)
 	<div class="order-date">
 		<div class="date-from">
 			<label for="dfrom">Date From: </label>
-			<input type="date" id="dfrom" name="dateFrom" value="2019-3-7">
+			<input type="date" id="dfrom" name="start" value="<?= $start ?>">
 		</div>
 		<div class="date-to">
 			<label for="dto">Date To: </label>
-			<input type="date" id="dto" name="dateTo" value="2019-3-20">
+			<input type="date" id="dto" name="end" value="<?= $end ?>">
 		</div>
 	</div>
 
@@ -247,8 +249,8 @@ catch(PDOException $e)
 			<option value="" >-----</option>
 
 			<?php
-
 				while ($user = $users->fetch(PDO::FETCH_ASSOC)) {
+					
 					?>
 
 					<option value="<?php echo $user['userID'] ?>" > <?php echo $user['name'] ?> </option>
@@ -271,27 +273,113 @@ catch(PDOException $e)
 
 
 
-	<ul class="cd-accordion-menu animated">
+	<ul class="cd-accordion-menu animated container-fluid">
 		<!-- start of name , total amount li group -->
 		<?php $i=0; $j=0;?>
 		<?php while ($row = $statement->fetch(PDO::FETCH_ASSOC)) { $i++;
 
 			?>
+			<form name="orderForm" method="post" action="myorder.php">
+            <p class="search_input">
+            <div class="row">
+                <div class="col-lg-4">
+									
+                    <input name="startDate" type="date" class="col-lg-12 btn-lg" value="<?= $start ?>" >
+                </div>
+                <div class="col-lg-4">
+                    <input name="endDate" type="date" class="col-lg-12 btn-lg" value="<?= $end ?>" >
+                </div>
+                <div class="col-lg-4">
+											<div class="col-rm-10">
+											<select class="col-lg-12 btn-lg">
+												<option selected>select user</option>
+												<?php
+												while ($user = $users->fetch(PDO::FETCH_ASSOC)) {
+													var_dump($users);
+														?>
+														
+														<option value="<?php echo $user['userID'] ?>" > <?php echo $user['name'] ?> </option>
+
+													<?php
+													}
+													?>
+												<!-- <option value="1">One</option>
+												<option value="2">Two</option>
+												<option value="3">Three</option> -->
+											</select>
+									</div>
+									
+									<!-- <select class="col-lg-10" id="select-user" name="userID" onchange="this.form.submit()">
+
+										<option value="" >-----</option>
+
+										<?php
+
+										//	while ($user = $users->fetch(PDO::FETCH_ASSOC)) {
+												?>
+
+												<option value="<?php //echo $user['userID'] ?>" > <?php //echo $user['name'] ?> </option>
+
+											<?php
+											// }
+										?>
+
+									</select> -->
+
+								</div>
+            </div>
+            </p>
+				</form>
+				<div class="row">
+				<div class="col-md-1"></div>
+                <div class="col-lg-7">
+                    <h3 class="col-lg-12 btn-lg"> Name</h3>
+								</div>
+								
+                <div class="col-lg-4">
+									<h3 class="col-lg-12 btn-lg"> Total amount</h3>
+                </div>
+                
+				</div>
+			<!-- <div id="name-total-amount"> -->
+		<!-- <span id="name"> Name </span> -->
+		<!-- <span id="total-amount"> Total amount </span> -->
+	<!-- </div> -->
 
 
 
 		<li class="has-children">
 			<input type="checkbox" name="<?php echo 'group-'.$i; ?>" id="<?php echo 'group-'.$i; ?>">
 			<label for="<?php echo 'group-'.$i; ?>">
-				<span class="c-name"><?php echo $row['name']; ?></span>
-				<span class="c-amount"><?php echo $row['totalCost']; ?></span>
+			<div class="row">
+				
+				<div class="col-md-8 col_trainings">
+					<?php echo $row['name']; ?>
+				</div>
+				<div class="col-md-4 col_downloads">
+						<?php echo $row['totalCost']; ?>
+				</div>
+			</div>
+				<!-- <span class="c-name"><?php echo $row['name']; ?></span> -->
+				<!-- <span class="c-amount"><?php echo $row['totalCost']; ?></span> -->
 			</label>
 			<ul>
-					<div id="order-date-amount">
+			<div class="row">
+				<div class="col-md-1"></div>
+				
+				<div class="col-md-7 col_trainings">
+					<h1>Order Date</h1>
+				</div>
+				
+				<div class="col-md-4 col_downloads">
+					<h1>Amount</h1>
+				</div>
+			</div>
+					<!-- <div id="order-date-amount">
 							<span id="order-date">Order Date</span>
 							<span id="order-amount">Amount</span>
 					</div>
-
+0 -->
 
 				<!-- start of order date, amount sub-group -->
 				<?php
@@ -317,7 +405,7 @@ catch(PDOException $e)
 
 					<ul>
 						<!-- star of listing products -->
-						<div class="products">
+						<div class="row">
 
 						<?php
 						$currentOrder=$order['id'];
@@ -325,16 +413,25 @@ catch(PDOException $e)
 						$products->execute();
 						while ($product = $products->fetch(PDO::FETCH_ASSOC))
 						{?>
-
-							<div class="product">
-								<img src="<?php echo $product['img_path'] ?>" class="productImg">
-                </br>
-								<span class="productName"><?php echo $product['name'] ?> </span>
-								<span class="productPrice"> Price : <?php echo $product['price'] ?> </span>
-								<span class="productAmount"> Amount : <?php echo $product['count'] ?> </span>
-
+							<div class="col-md-3 prodData">
+									
+									<img width="50" height="50" src="<?= $proData['img_path'] ?>">
+									
+									<h4>
+											<?php
+													echo $product['count'];
+													echo " : " ;
+													echo $product['name'];
+													echo " : " ;
+													echo $product['count']*$product['price']
+											?>
+									</h4>
+									<!-- <h5> -->
+									<!-- </h5> -->
 							</div>
-						<?php }
+
+						<?php 
+						}
 						?>
 
 						</div>
