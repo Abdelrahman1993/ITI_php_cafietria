@@ -19,10 +19,10 @@ if(isset($_POST['submit'])){
 
     if(isset($_POST['room'])&&!empty($_POST['room'])){
         $room=$_POST['room'];
-        }else{
-            $err .="1";
-            $errFlag=1; 
-        }
+    }else{
+        $err .="1";
+        $errFlag=1; 
+    }
     if(isset($_POST['room'])&&$_POST['cost']!=0){
         $cost=$_POST['cost'];
     }else{
@@ -30,6 +30,7 @@ if(isset($_POST['submit'])){
         $errFlag=1;
         
     }
+    if(isset($_poST['']))
     if($errFlag==0){
         $room=$_POST['room'];
         $cost=$_POST['cost'];
