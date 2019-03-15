@@ -57,27 +57,7 @@
 
 <div class="container">
     <!--start of the head and date-->
-    <div class="orderDate">
-        <div>
-            <h1>my order</h1>
-        </div>
 
-        <form name="orderForm" method="post" action="myorder.php">
-            <p class="search_input">
-            <div class="row">
-                <div class="col-4 offset-1">
-                    <input name="startDate" type="date" class="form-control" value="<?= $start ?>" >
-                </div>
-                <div class="col-4">
-                    <input name="endDate" type="date" class="form-control" value="<?= $end ?>" >
-                </div>
-                <div class="col-3">
-                    <input type="submit" value="filter" name="submit" class="">
-                </div>
-            </div>
-            </p>
-        </form>
-    </div>
     <!--end of the head and date-->
     <?php
 
@@ -97,7 +77,29 @@
                   where (order_date BETWEEN '$start' AND '$end')
                   AND user_id = '2'  ";
     ?>
+
     <div class="row">
+<!--        <div class="orderDate">-->
+            <div>
+                <h1>my order</h1>
+            </div>
+
+            <form name="orderForm" method="post" action="myorder.php">
+                <p class="search_input">
+                <div class="row">
+                    <div class="col-lg-4 offset-1">
+                        <input name="startDate" type="date" class="col-lg-12 btn-lg" value="<?= $start ?>" >
+                    </div>
+                    <div class="col-lg-4">
+                        <input name="endDate" type="date" class="col-lg-12 btn-lg" value="<?= $end ?>" >
+                    </div>
+                    <div class="col-lg-4">
+                        <input type="submit" value="filter"  name="submit" class="col-lg-12 btn-lg">
+                    </div>
+                </div>
+                </p>
+            </form>
+<!--        </div>-->
         <div class="col-12">
             <ul class="cd-accordion-menu animated container">
                 <li>
@@ -117,17 +119,17 @@
                         <input type="checkbox" name="<?php echo $GroupNum ?>" id="<?php echo $GroupNum?>">
                         <label class="row container-fluid" for="<?php echo $GroupNum ?>">
                             <div class="row">
-                                <div class="col-md-3 col_trainings">
+                                <div class="col-lg-3 col_trainings">
                                     <?php echo $row['order_date'] ?>
                                 </div>
-                                <div class="col-md-3 col_downloads">
+                                <div class="col-lg-3 col_downloads">
                                     <?php echo $row['order_status'] ?>
                                 </div>
-                                <div class="col-md-3 col_project">
+                                <div class="col-lg-3 col_project">
                                     <?php echo $row['cost'] ?>
                                 </div>
-                                <div class="col-sm-3 mx-auto col_contact">
-                                    <form name="orderForm" method="post" action="cancleorder.php">
+                                <div class="col-lg-3 mx-auto col_contact">
+
                                     <?php
                                         if($row['order_status']=="done"){
                                             ?>
@@ -135,13 +137,14 @@
                                         <?php
                                         }else{
                                             ?>
-
-                                    <input  type="submit" value="cancle">
-                                    <input name="cancle" type="hidden" value="<?= $row['id'] ?>">
+                                        <form name="orderForm" method="POST" action="cancleorder.php">
+                                            <input  type="submit" value="cancle">
+                                            <input name="cancle" type="hidden" value="<?= $row['id'] ?>">
+                                        </form>
                                     <?php
                                         }
                                         ?>
-                                    </form>
+
                                 </div>
                             </div>
                         </label>
@@ -200,6 +203,6 @@
         </div>
     </div>
 </div>
-<?php include $tpl . 'footer.php';?>
+<?php //include $tpl . 'footer.php';?>
 <script src="Layout/js/myorder.js"></script> <!-- Resource jQuery -->
 
