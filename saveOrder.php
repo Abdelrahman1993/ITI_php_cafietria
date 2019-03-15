@@ -16,7 +16,7 @@ $user_id=$_SESSION['User']['id'];
 $admin=$_SESSION['User']['group_id'];
 
 if(isset($_POST['submit'])){
-
+echo "hello aya";
     if(isset($_POST['room'])&&!empty($_POST['room'])){
         $room=$_POST['room'];
     }else{
@@ -30,8 +30,9 @@ if(isset($_POST['submit'])){
         $errFlag=1;
         
     }
-    if(isset($_poST['']))
+    
     if($errFlag==0){
+        echo "hello aya";
         $room=$_POST['room'];
         $cost=$_POST['cost'];
         $note= $_POST['notes'];
@@ -62,9 +63,7 @@ if(isset($_POST['submit'])){
             $stmt_1->execute(array($user_name));          
             while ($row_user = $stmt_1->fetch()) {
                 $user_id=$row_user['id'];
-                // $sql= 'INSERT INTO Orders (order_status,cost,room_id,user_id,order_date,notes)
-                // VALUES ("Processing",'.$cost.','.$roomId.','.$user_id.',"'.date("Y-m-d  H:i:s",time()).'","'.$note.'")';           
-
+             
                  $stmt_2 = $con->prepare("INSERT INTO Orders (order_status,cost,room_id,user_id,order_date, note)
                  VALUES ('Processing',?,?,?,?,?)");
                   if($stmt_2->execute(array($cost,$roomId,$user_id,date("Y-m-d  H:i:s",time()),$note))){
@@ -97,6 +96,7 @@ if(isset($_POST['submit'])){
 function save_user_data($con,$admin){
        $lastID = $con->lastInsertId();
         $orderData =  json_decode($_POST['order_data'], true);
+        // echo "arr = $orderData"; 
         foreach ($orderData as $k => $v) {
             echo $v;
             echo " ".$k;
@@ -114,11 +114,11 @@ function save_user_data($con,$admin){
     if($mainPage==1){
         if($admin==1){
             // echo "ADMIN";
-              header('Location:adminPage.php');
+             // header('Location:adminPage.php');
               exit;
         }else{
             // echo "USER";
-            header('Location:userPage.php');
+            //header('Location:userPage.php');
             exit;
         }
     }else{

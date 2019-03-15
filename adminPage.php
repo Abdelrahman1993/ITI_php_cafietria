@@ -12,7 +12,7 @@ if(!isset($_SESSION['User']))
         <div class="row">
             <div id="side-bar" class="col-lg-4">
             <form method="post" action="saveOrder.php" >
-            <input type="hidden" name="order_data" id="order_data">
+            <input type="hidden" name="order_data" value="" id="order_data">
                 <div id="orders">
 
 

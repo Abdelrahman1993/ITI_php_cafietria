@@ -6,42 +6,43 @@ let removeBtn = document.getElementsByClassName('remove')
 let orderImage = document.getElementsByClassName('imgSize');
 let orders = document.getElementById('orders');
 let totalPrice = document.getElementById('totalPrice');
-let priceSpan = document.getElementsByClassName('productPriceAdmin');
+let priceSpan = document.getElementsByClassName('productPrice');
 let searchInput = document.getElementById('search');
 let orderList = document.getElementsByClassName('orderList');
 let priceInput = document.getElementById('priceInput');
-let userorderDataAdmin = document.getElementById('order_data');
+let userOrderData = document.getElementById('order_data');
 let totalP;
-
+let flag = 0;
 
 if (localStorage.getItem('productPriceAdmin') == null) {
-    var productPriceAdmin = {};
+    var productPrice = {};
 } else {
-    var productPriceAdmin = JSON.parse(localStorage.getItem('productPriceAdmin'));
+    var productPrice = JSON.parse(localStorage.getItem('productPriceAdmin'));
 }
 
-if (localStorage.getItem('totalproductPriceAdmin') == null) {
-    var totalproductPriceAdmin = {};
+if (localStorage.getItem('totalProductPriceAdmin') == null) {
+    var totalProductPrice = {};
 } else {
-    var totalproductPriceAdmin = JSON.parse(localStorage.getItem('totalproductPriceAdmin'));
+    var totalProductPrice = JSON.parse(localStorage.getItem('totalProductPriceAdmin'));
 }
 
 if (localStorage.getItem('orderDataAdmin') == null) {
-    var orderDataAdmin = {};
+    var orderData = {};
 } else {
-    var orderDataAdmin = JSON.parse(localStorage.getItem('orderDataAdmin'));
-    renderElement(orderDataAdmin,productPriceAdmin,totalproductPriceAdmin);
+    var orderData = JSON.parse(localStorage.getItem('orderDataAdmin'));
+    renderElement(orderData,productPrice,totalProductPrice);
 }
 
 
 if (localStorage.getItem('clickableImageAdmin') == null) {
-    var clickableImageAdmin = {};
+    var clickableImage = {};
 } else {
-    var clickableImageAdmin = JSON.parse(localStorage.getItem('clickableImageAdmin'));
-    img_click(clickableImageAdmin);
+    var clickableImage = JSON.parse(localStorage.getItem('clickableImageAdmin'));
+    img_click(clickableImage);
 }
 
 searchInput.addEventListener('keyup', () => {
+
     let productList = document.getElementsByClassName('productName');
     let filter = searchInput.value.toUpperCase();
     for (let i = 0; i < productList.length; i++) {
@@ -57,23 +58,26 @@ searchInput.addEventListener('keyup', () => {
 for (let i = 0; i < orderImage.length; i++) {
     orderImage[i].addEventListener('click', (event) => {
         orderImage[i].style.pointerEvents = "none";
-        clickableImageAdmin[event.target.name] = 'none';
-        localStorage.setItem('clickableImageAdmin', JSON.stringify(clickableImageAdmin));
+
+        clickableImage[event.target.name] = 'none';
+        localStorage.setItem('clickableImageAdmin', JSON.stringify(clickableImage));
         console.log("clicabel = " + localStorage.getItem('clickableImageAdmin'));
         totalP = event.target.alt;
         let myorder = document.createElement('div');
         myorder.setAttribute('class', 'orderList');
         myorder.setAttribute('name', 'order_list');
 
+
+
         let name = document.createElement('span');
         name.setAttribute('name', 'order_name');
         name.setAttribute('id', event.target.alt);
         name.appendChild(document.createTextNode(event.target.name));
-        productPriceAdmin[event.target.name]=event.target.alt;
-        localStorage.setItem('productPriceAdmin',JSON.stringify(productPriceAdmin));
+        productPrice[event.target.name]=event.target.alt;
+        localStorage.setItem('productPriceAdmin',JSON.stringify(productPrice));
          
-        totalproductPriceAdmin[event.target.name]=totalP;
-        localStorage.setItem('totalproductPriceAdmin',JSON.stringify(totalproductPriceAdmin));
+        totalProductPrice[event.target.name]=totalP;
+        localStorage.setItem('totalProductPriceAdmin',JSON.stringify(totalProductPrice));
         
         let count = document.createElement('span');
         count.setAttribute('class', 'orderCount');
@@ -84,10 +88,13 @@ for (let i = 0; i < orderImage.length; i++) {
         myorder.appendChild(count);
 
         let ord_name = event.target.name;
+        // Object.assign(orderData, { ord_name: count.innerHTML });
+
         console.log(count.innerHTML);
-        orderDataAdmin[ord_name] = count.innerHTML;
-        userorderDataAdmin.value = JSON.stringify(orderDataAdmin);
-        localStorage.setItem('orderDataAdmin', JSON.stringify(orderDataAdmin));
+        orderData[ord_name] = count.innerHTML;
+        userOrderData.value = JSON.stringify(orderData);
+        localStorage.setItem('orderDataAdmin', JSON.stringify(orderData));
+
         let plusBtn = document.createElement('button');
         plusBtn.setAttribute('type', 'button');
         plusBtn.setAttribute('id', event.target.id);
@@ -96,6 +103,7 @@ for (let i = 0; i < orderImage.length; i++) {
         spanPlusBtn.setAttribute('class', 'glyphicon glyphicon-plus')
         plusBtn.appendChild(spanPlusBtn);
         plusBtn.onclick = (event2) => {
+
             incrementAction(event2);
         };
         myorder.appendChild(plusBtn);
@@ -108,6 +116,7 @@ for (let i = 0; i < orderImage.length; i++) {
         minusBtn.appendChild(spanMinusBtn);
 
         minusBtn.onclick = (event2) => {
+
             decrementAction(event2);
         }
         myorder.appendChild(minusBtn);
@@ -117,7 +126,7 @@ for (let i = 0; i < orderImage.length; i++) {
         myorder.appendChild(EGP);
 
         let price = document.createElement('span');
-        price.setAttribute('class', 'productPriceAdmin');
+        price.setAttribute('class', 'productPrice');
         price.appendChild(document.createTextNode(totalP))
         myorder.appendChild(price);
 
@@ -130,14 +139,15 @@ for (let i = 0; i < orderImage.length; i++) {
         removeBtn.onclick = (event2) => {
             orderImage[i].style.pointerEvents = "auto";
             let ord_name = event.target.name;
-            delete orderDataAdmin[ord_name];
-            userorderDataAdmin.value = JSON.stringify(orderDataAdmin);
-            localStorage.setItem('orderDataAdmin', JSON.stringify(orderDataAdmin));
-            clickableImageAdmin[ord_name] = 'auto';
-            localStorage.setItem('clickableImageAdmin', JSON.stringify(clickableImageAdmin));
+            delete orderData[ord_name];
+            userOrderData.value = JSON.stringify(orderData);
+
+            localStorage.setItem('orderDataAdmin', JSON.stringify(orderData));
+            clickableImage[ord_name] = 'auto';
+            localStorage.setItem('clickableImageAdmin', JSON.stringify(clickableImage));
             console.log("aaaa = " + localStorage.getItem('clickableImageAdmin'));
             removeAction(event2);
-            img_click(clickableImageAdmin);
+            img_click(clickableImage);
         };
         myorder.appendChild(removeBtn);
         orders.appendChild(myorder);
@@ -155,6 +165,7 @@ function calculateTotalPrice() {
     priceInput.value = total;
 }
 
+
 function incrementAction(event2) {
     let val = parseInt(event2.target.previousElementSibling.innerHTML);
     val++;
@@ -162,13 +173,13 @@ function incrementAction(event2) {
     event2.target.parentElement.childNodes[5].innerHTML = totalP;
     event2.target.previousElementSibling.innerHTML = val;
     let ord_name = event2.target.parentElement.childNodes[0].innerHTML;
-    orderDataAdmin[ord_name] = val;
+    orderData[ord_name] = val;
 
-    totalproductPriceAdmin[ord_name]=totalP;
-    localStorage.setItem('totalproductPriceAdmin',JSON.stringify(totalproductPriceAdmin));
+    totalProductPrice[ord_name]=totalP;
+    localStorage.setItem('totalProductPriceAdmin',JSON.stringify(totalProductPrice));
 
-    userorderDataAdmin.value = JSON.stringify(orderDataAdmin);
-    localStorage.setItem('orderDataAdmin', JSON.stringify(orderDataAdmin));
+    userOrderData.value = JSON.stringify(orderData);
+    localStorage.setItem('orderDataAdmin', JSON.stringify(orderData));
     calculateTotalPrice();
 }
 
@@ -180,12 +191,12 @@ function decrementAction(event2) {
         event2.target.parentElement.childNodes[5].innerHTML = totalP;
         event2.target.parentElement.childNodes[1].innerHTML = val;
         let ord_name = event2.target.parentElement.childNodes[0].innerHTML;
-        orderDataAdmin[ord_name] = val;
-        totalproductPriceAdmin[ord_name]=totalP;
-        localStorage.setItem('totalproductPriceAdmin',JSON.stringify(totalproductPriceAdmin));
+        orderData[ord_name] = val;
+        totalProductPrice[ord_name]=totalP;
+        localStorage.setItem('totalProductPriceAdmin',JSON.stringify(totalProductPrice));
 
-        userorderDataAdmin.value = JSON.stringify(orderDataAdmin);
-        localStorage.setItem('orderDataAdmin', JSON.stringify(orderDataAdmin));
+        userOrderData.value = JSON.stringify(orderData);
+        localStorage.setItem('orderDataAdmin', JSON.stringify(orderData));
     }
     calculateTotalPrice();
 }
@@ -195,23 +206,24 @@ function removeAction(event2) {
     calculateTotalPrice();
 }
 
-function renderElement(orderDataAdmin,productPriceAdmin,totalproductPriceAdmin) {
-    Object.keys(orderDataAdmin).forEach(function (key) {
-        console.log('Key : ' + key + ', Value : ' + orderDataAdmin[key])
+
+function renderElement(orderData,productPrice,totalProductPrice) {
+    Object.keys(orderData).forEach(function (key) {
+        console.log('Key : ' + key + ', Value : ' + orderData[key])
         let myorder = document.createElement('div');
         myorder.setAttribute('class', 'orderList');
         myorder.setAttribute('name', 'order_list');
 
         let name = document.createElement('span');
         name.setAttribute('name', 'order_name');
-         name.setAttribute('id', productPriceAdmin[key]);
+         name.setAttribute('id', productPrice[key]);
         name.appendChild(document.createTextNode(key));
 
 
         let count = document.createElement('span');
         count.setAttribute('class', 'orderCount');
         count.setAttribute('name', 'order_count');
-        count.appendChild(document.createTextNode(orderDataAdmin[key]))
+        count.appendChild(document.createTextNode(orderData[key]))
 
         myorder.appendChild(name);
         myorder.appendChild(count);
@@ -244,8 +256,8 @@ function renderElement(orderDataAdmin,productPriceAdmin,totalproductPriceAdmin) 
         myorder.appendChild(EGP);
 
         let price = document.createElement('span');
-        price.setAttribute('class', 'productPriceAdmin');
-        price.appendChild(document.createTextNode(totalproductPriceAdmin[key]));
+        price.setAttribute('class', 'productPrice');
+        price.appendChild(document.createTextNode(totalProductPrice[key]));
         myorder.appendChild(price);
 
         let removeBtn = document.createElement('button');
@@ -257,15 +269,15 @@ function renderElement(orderDataAdmin,productPriceAdmin,totalproductPriceAdmin) 
         removeBtn.onclick = (event2) => {
 
             let ord_name = event2.target.parentElement.childNodes[0].innerHTML;
-            delete orderDataAdmin[ord_name];
-            userorderDataAdmin.value = JSON.stringify(orderDataAdmin);
-            localStorage.setItem('orderDataAdmin', JSON.stringify(orderDataAdmin));
+            delete orderData[ord_name];
+            userOrderData.value = JSON.stringify(orderData);
+            localStorage.setItem('orderDataAdmin', JSON.stringify(orderData));
             event2.target.style.pointerEvents='auto';
-            clickableImageAdmin[ord_name] = 'auto';
-            localStorage.setItem('clickableImageAdmin', JSON.stringify(clickableImageAdmin));
+            clickableImage[ord_name] = 'auto';
+            localStorage.setItem('clickableImageAdmin', JSON.stringify(clickableImage));
             console.log("aaaa = " + localStorage.getItem('clickableImageAdmin'));
             removeAction(event2);
-            img_click(clickableImageAdmin);
+            img_click(clickableImage);
         };
         myorder.appendChild(removeBtn);
         orders.appendChild(myorder);
@@ -273,12 +285,12 @@ function renderElement(orderDataAdmin,productPriceAdmin,totalproductPriceAdmin) 
     })
 
 }
-function img_click(clickableImageAdmin) {
-    Object.keys(clickableImageAdmin).forEach(function (key) {
-        console.log('Key : ' + key + ', Value : ' + clickableImageAdmin[key])
-        for(let a=0;a<orderImage.length;a++){
-            if(orderImage[a].name==key){
-            orderImage[a].style.pointerEvents = clickableImageAdmin[key];
+function img_click(clickableImage) {
+    Object.keys(clickableImage).forEach(function (key) {
+        console.log('Key : ' + key + ', Value : ' + clickableImage[key])
+        for (let a = 0; a < orderImage.length; a++) {
+            if (orderImage[a].name == key) {
+                orderImage[a].style.pointerEvents = clickableImage[key];
             }
         }
 
