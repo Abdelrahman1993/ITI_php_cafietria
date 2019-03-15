@@ -21,24 +21,9 @@
         </thead>
         <tbody>
         <?php
-              $stmt = $con->prepare("SELECT * FROM Products");
-              $stmt->execute();
-                while($row= $stmt->fetch())
-                {
-            ?>
-            <tr>
-                <th scope="row"><?= $row['name'] ?></th>
-                <td><?= $row['price'] ?></td>
-                <td>
-                    <img src="<?= $row['img_path']?>" width="100" height="100">
-                </td>
-                <td><?= $row['status']?>
-                    <a href="editProduct.php?id='<?=$row['id']?>'"><button>Edit</button></a>
-                    <a href="deleteProduct.php?id='<?=$row['id']?>'"><button>Delete</button></a>
-                </td>
-            </tr>
-            <?php
-        }
+                $tableName="ProductsPage";
+                include "pagination.php";
+
         ?>
         </tbody>
     </table>

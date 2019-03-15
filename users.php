@@ -28,26 +28,8 @@
         </thead>
         <tbody>
 <?php
-  $stmt = $con->prepare("SELECT User.id, name, img_path, User.room_id, ext FROM User, 
-                                  Room where User.room_id=Room.room_id");
-  $stmt->execute();
-  while($row= $stmt->fetch())
-  {
-    ?>
-    <tr>
-        <th><?=$row['name']?></th>
-        <td>
-            <img src="<?= $row['img_path']?>" width="100" height="100">
-        </td>
-        <td><?=$row['room_id']?></td>
-        <td><?=$row['ext']?></td>
-        <td>
-            <a href="editUser.php?id='<?=$row['id']?>'"><button>Edit</button></a>
-            <a href="deleteUser.php?id='<?=$row['id']?>'"><button>Delete</button></a>
-        </td>
-    </tr>
-<?php
-}
+ $tableName="User";
+ include "pagination.php";
 ?>
         </tbody>
     </table>
