@@ -7,7 +7,7 @@
   session_start();
   require 'dbConnection.php';
 
-  $user_id = $_SESSION['userid'];
+  $user_id = $_POST['user_id'];
 
   $user_name = $_POST['user_name'];
   $room_num = $_POST['room_num'];

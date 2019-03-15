@@ -8,21 +8,6 @@ if(!isset($_SESSION['User']))
 }
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <title>Cafateria</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn. بcom/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-</head>
-
-<body>
-
     <div class="container-fluid" id="wrapper">
         <div class="row">
             <div id="side-bar" class="col-lg-4">
@@ -113,5 +98,3 @@ if(!isset($_SESSION['User']))
         </div>
     </div>
     <script src="Layout/js/adminPage.js"></script>
-</body>
-</html>

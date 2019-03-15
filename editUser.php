@@ -6,47 +6,6 @@
   {
     header('Location:index.php');
   }
-
-
-require_once('model/user.php');
-$rom=new User();
-$rooms=$rom->getRooms();
-$exrom=new User();
-$extr_rooms=$exrom->getRoomsExt();
-
-if(!empty($_GET['id']))
-{
-
-  $_SESSION['userid']=$_GET['id'];
-   $usr=new User();
-   $usr->id=$_GET['id'];
-   $usr_data=$usr->getUser();
-
-       while($row= $usr_data->fetch(PDO::FETCH_ASSOC))
-         {
-
-	       foreach ($row as $key => $value)
-              {
-                   if($key=="name")
-                   {
-                    $_SESSION['usrname']=$value;
-                   }
-                   else if($key=="room_number")
-                   {
-                    $_SESSION['romnum']=$value;
-                   }
-                  else if($key=="ext")
-                   {
-                    $_SESSION['extranum']=$value;
-                   }
-                    else if($key=="img_path")
-                     {
-                      $_SESSION['img']=$value;
-                     }
-
-                  }
-          }
-}
 ?>
 
 <form action="edit_current_user.php" method="post" enctype="multipart/form-data">
@@ -56,9 +15,15 @@ if(!empty($_GET['id']))
  	<h1>Edit User</h1>
 
  </tr>
+  <?php
+    $stmt = $con->prepare("SELECT * FROM User where id=".$_GET['id']);
+    $stmt->execute();
+    while($row= $stmt->fetch()) {
+      ?>
  <tr>
  	<td><label>Name</label></td>
- 	<td><input type="text" name="user_name" required  value=" <?php if(isset($_SESSION['usrname'])){echo $_SESSION['usrname'];}?>"/></td>
+ 	<td><input type="text" name="user_name" required  value="<?= $row['name']; ?>"/></td>
+ 	<td><input type="hidden" name="user_id" required  value="<?= $row['id']; ?>"/></td>
  </tr>
 
  <tr>
@@ -66,19 +31,14 @@ if(!empty($_GET['id']))
  	<td>
  		<select  name="room_num" required>
       <?php
-        while ($row=$rooms->fetch(PDO::FETCH_ASSOC))
-         {
-            foreach ($row as $key => $value) {
-              echo '<option class="rooms"  name="rooms" value=" ';
-              echo $value.' " ';
-              if(isset($_SESSION['romnum']))
-              {
-                 if($_SESSION['romnum']==$value)
-                  echo 'selected="selected"';
-              }
-              echo '>'.$value.'</option> ';
-            }
-         }
+        $stmt1 = $con->prepare("SELECT * FROM Room");
+        $stmt1->execute();
+        while($row1= $stmt1->fetch())
+        {
+      ?>
+          <option value="<?= $row1['room_id']; ?>"><?= $row1['room_id'] ?></option>';
+      <?php
+        }
       ?>
  		</select>
  	</td>
@@ -96,13 +56,16 @@ if(!empty($_GET['id']))
 <tr>
 <td><label>User Picture</label></td>
   <td><input type="file" name="fileToUpload"  accept='image/jpeg,image/jpg,image/png' ></td>
-<td> <img src="<?php echo $_SESSION['img']; ?>" width="150" height="150" /></td>
+<td> <img src="<?= $row['img_path']; ?>" width="150" height="150" /></td>
 
  </tr>
  <tr>
  	<td><input type="submit" name="btn_Save" value="Edit"></td>
  	<td><input type="reset" value="Reset" name="btn_rest"></td>
  </tr>
+   <?php
+    }
+  ?>
  <tr>
  	<td colspan="2"> <center><label name="lblerror" style="color: red"> <?php
 

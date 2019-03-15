@@ -5,9 +5,6 @@
       {
         header('Location:index.php');
       }
-    require_once('model/products.php');
-    $product=new Product();
-    $pros=$product->getAllProducts();
     ?>
     <div class="container" >
         <h1> All Products </h1>
@@ -25,7 +22,9 @@
             </thead>
             <tbody>
 <?php
-    while($row= $pros->fetch(PDO::FETCH_ASSOC))
+  $stmt = $con->prepare("SELECT * FROM Products");
+  $stmt->execute();
+    while($row= $stmt->fetch())
     {
 ?>
         <tr>

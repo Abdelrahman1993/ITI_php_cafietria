@@ -7,10 +7,6 @@
     header('Location:index.php');
   }
 
-require_once('model/user.php');
-$user=new User();
-$users_res=$user->getAllUsers();
-
 ?>
 <div class="container" >
     <h1> All Users </h1>
@@ -32,8 +28,11 @@ $users_res=$user->getAllUsers();
         </thead>
         <tbody>
 <?php
-while($row= $users_res->fetch(PDO::FETCH_ASSOC))
-{
+  $stmt = $con->prepare("SELECT User.id, name, img_path, User.room_id, ext FROM User, 
+                                  Room where User.room_id=Room.room_id");
+  $stmt->execute();
+  while($row= $stmt->fetch())
+  {
     ?>
     <tr>
         <th><?=$row['name']?></th>
