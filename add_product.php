@@ -20,14 +20,14 @@
       <div class="form-group row">
         <label for="example-text-input" class="col-2 col-form-label "><h3 class="font-weight-bold">Product</h3></label>
         <div class="col-10">
-          <input name="product_name" class="form-control border-danger" type="text" id="example-text-input">
+          <input name="product_name" class="form-control border-danger" type="text" id="example-text-input" required>
         </div>
       </div>
 
       <div class="form-group row">
         <label for="example-number-input" class="col-2 col-form-label"><h3 class="font-weight-bold">Price</h3></label>
         <div class="col-10">
-          <input name="price" class="form-control border-danger" type="number" value="" id="example-number-input">
+          <input name="price" class="form-control border-danger" type="number" min="5" id="example-number-input" required>
         </div>
       </div>
 
@@ -54,7 +54,7 @@
               <span class="input-group-text border-danger bg-danger text-white" id="inputGroupFileAddon01">Upload</span>
             </div>
             <div class="custom-file ">
-              <input name="fileToUpload" type="file" class="custom-file-input bg-danger text-white" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+              <input name="fileToUpload" type="file" class="custom-file-input bg-danger text-white" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" required>
               <label class="custom-file-label border-danger " for="inputGroupFile01">Choose file</label>
             </div>
           </div>

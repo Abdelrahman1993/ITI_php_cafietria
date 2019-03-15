@@ -1,11 +1,12 @@
 <?php
 
-  if(!isset($_SESSION['User']))
+  include('init.php');
+
+if(!isset($_SESSION['User']))
   {
     header('Location:index.php');
   }
 
-include('init.php');
 
 require_once('model/products.php');
 require_once('model/category.php');
@@ -46,7 +47,8 @@ if(!empty($_GET['id']))
   <link rel="stylesheet" type="text/css" href="css/products.css">
 </head>
 <body>
-<form action="./model/editSession.php" method="post"  >
+<form action="edit_current_product.php" method="post" enctype="multipart/form-data">
+
 <center>
   <h1> Edit Product </h1>
 <table>
@@ -63,7 +65,8 @@ if(!empty($_GET['id']))
  <tr>
  	<td><label>Category</label></td>
  	<td>
- 		<select  name="category"   required>
+ 		<select name="category" required>
+
     <?php
         $cid;
         $catnam;
@@ -92,13 +95,15 @@ if(!empty($_GET['id']))
 
  </tr>
   <tr>
- 	<td><label>Quantity</label></td>
+ 	<td><label>Status</label></td>
+
  	<td><input type="text" name="product_quantity" min="0"  required
     value="<?php echo $_SESSION['proquantity'];?>" /></td>
  </tr>
   <tr>
   <td><label>Product Picture</label></td>
-  <td><input type="file" name="img"  accept='image/jpeg,image/jpg,image/png' ></td>
+  <td><input type="file" name="fileToUpload"  accept='image/jpeg,image/jpg,image/png' ></td>
+
 
 <td colspan="2"> <img src="<?php echo $_SESSION['imgpath'];?>" width="100" height="100"/> </td>
  </tr>

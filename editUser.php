@@ -1,11 +1,12 @@
 <?php
 
+  include('init.php');
+
   if(!isset($_SESSION['User']))
   {
     header('Location:index.php');
   }
 
-include('init.php');
 
 require_once('model/user.php');
 $rom=new User();
@@ -45,15 +46,14 @@ if(!empty($_GET['id']))
 
                   }
           }
-
 }
 ?>
 
-<form action="./model/editSessionUser.php" method="post"  >
+<form action="edit_current_user.php" method="post" enctype="multipart/form-data">
 <center>
 <table>
  <tr>
- 	<h1> Edit User </h1>
+ 	<h1>Edit User</h1>
 
  </tr>
  <tr>
@@ -64,31 +64,40 @@ if(!empty($_GET['id']))
  <tr>
  	<td><label>Room Number</label></td>
  	<td>
- 		<select  name="rooms" required>
-          <?php
-              while ($row=$rooms->fetch(PDO::FETCH_ASSOC))
-               {
-                  foreach ($row as $key => $value) {
-                    echo '<option class="rooms"  name="rooms" value=" ';
-                    echo $value.' " ';
-                    if(isset($_SESSION['romnum']))
-                    {
-                       if($_SESSION['romnum']==$value)
-                        echo 'selected="selected"';
-                    }
-                    echo '>'.$value.'</option> ';
-                  }
-               }
-             ?>
-
+ 		<select  name="room_num" required>
+      <?php
+        while ($row=$rooms->fetch(PDO::FETCH_ASSOC))
+         {
+            foreach ($row as $key => $value) {
+              echo '<option class="rooms"  name="rooms" value=" ';
+              echo $value.' " ';
+              if(isset($_SESSION['romnum']))
+              {
+                 if($_SESSION['romnum']==$value)
+                  echo 'selected="selected"';
+              }
+              echo '>'.$value.'</option> ';
+            }
+         }
+      ?>
  		</select>
  	</td>
  </tr>
 
+  <tr>
+ 	<td><label>make admin</label></td>
+ 	<td>
+ 		<select  name="admin" required>
+      <option value="1">yes</option>
+      <option value="0">no</option>
+ 		</select>
+ 	</td>
+ </tr>
 <tr>
 <td><label>User Picture</label></td>
-  <td><input type="file" name="img"  accept='image/jpeg,image/jpg,image/png' ></td>
-<td> <img src="<?php echo   $_SESSION['img']; ?>" width="150" height="150" /></td>
+  <td><input type="file" name="fileToUpload"  accept='image/jpeg,image/jpg,image/png' ></td>
+<td> <img src="<?php echo $_SESSION['img']; ?>" width="150" height="150" /></td>
+
  </tr>
  <tr>
  	<td><input type="submit" name="btn_Save" value="Edit"></td>

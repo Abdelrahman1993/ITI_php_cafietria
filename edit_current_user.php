@@ -2,17 +2,22 @@
 
   if($_SERVER['REQUEST_METHOD'] != 'POST')
   {
-    header('Location:/add_product.php');
+    header('Location:/users.php');
   }
+  session_start();
   require 'dbConnection.php';
 
-  $product_name = $_POST['product_name'];
-  $product_price = $_POST['price'];
-  $cat_id = $_POST['category'];
-  $product_status = 'available';
+  $user_id = $_SESSION['userid'];
+
+  $user_name = $_POST['user_name'];
+  $room_num = $_POST['room_num'];
+  $admin = $_POST['admin'];
+
 
   $target_dir = "Layout/images/";
   $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+  echo $target_file;
+  echo '<br>';
   $uploadOk = 1;
   $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
   // Check if image file is a actual image or fake image
@@ -51,11 +56,13 @@
       }
   }
 
-  $stmt = $con->prepare("INSERT INTO Products (name, price, img_path, status, cat_id)
-  VALUES (?,?,?,?,?)");
-  if ($stmt->execute(array($product_name, $product_price, $target_file,
-    $product_status, $cat_id))) {
-    header('Location:products.php');
+  echo $user_id;
+
+  $stmt = $con->prepare("update User set name = ?, img_path = ?, room_id = ?,
+                        group_id = ? where id = ?");
+  if ($stmt->execute(array($user_name, $target_file,
+    $room_num, $admin, $user_id))) {
+    header('Location:users.php');
   }
 
 ?>

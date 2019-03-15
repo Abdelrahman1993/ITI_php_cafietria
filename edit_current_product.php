@@ -2,17 +2,22 @@
 
   if($_SERVER['REQUEST_METHOD'] != 'POST')
   {
-    header('Location:/add_product.php');
+    header('Location:products.php');
   }
+  session_start();
   require 'dbConnection.php';
 
+  $product_id = $_SESSION['proid'];
+
   $product_name = $_POST['product_name'];
-  $product_price = $_POST['price'];
+  $product_price = $_POST['product_price'];
   $cat_id = $_POST['category'];
-  $product_status = 'available';
+  $product_status = $_POST['product_quantity'];
+
 
   $target_dir = "Layout/images/";
   $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+  echo $target_file;
   $uploadOk = 1;
   $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
   // Check if image file is a actual image or fake image
@@ -51,10 +56,12 @@
       }
   }
 
-  $stmt = $con->prepare("INSERT INTO Products (name, price, img_path, status, cat_id)
-  VALUES (?,?,?,?,?)");
+  echo $product_id;
+
+  $stmt = $con->prepare("update Products set name = ?, price = ?, img_path = ?, status = ?,
+                        cat_id = ? where id = ?");
   if ($stmt->execute(array($product_name, $product_price, $target_file,
-    $product_status, $cat_id))) {
+    $product_status, $cat_id, $product_id))) {
     header('Location:products.php');
   }
 

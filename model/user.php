@@ -19,7 +19,8 @@ class User
   $this->dbname="ITI_Cafeteria";
   $this->host="localhost";
   $this->dbuser="root";
-  $this->upasswd="";
+  $this->upasswd="01111451253";
+
   $this->uri = "mysql:host=$this->host;dbname=$this->dbname";
   $this->connector = new PDO($this->uri, $this->dbuser,$this->upasswd);
   $this->connector->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

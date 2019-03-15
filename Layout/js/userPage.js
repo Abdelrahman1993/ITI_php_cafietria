@@ -12,6 +12,11 @@ let orderList = document.getElementsByClassName('orderList');
 let priceInput = document.getElementById('priceInput');
 let userOrderData = document.getElementById('order_data');
 let totalP;
+let orderData = {};
+let flag = 0;
+
+searchInput.addEventListener('keyup', () => {
+    console.log("search");
 
 
 if (localStorage.getItem('productPrice') == null) {
@@ -42,6 +47,7 @@ if (localStorage.getItem('clickableImage') == null) {
 }
 
 searchInput.addEventListener('keyup', () => {
+
     let productList = document.getElementsByClassName('productName');
     let filter = searchInput.value.toUpperCase();
     for (let i = 0; i < productList.length; i++) {
@@ -57,6 +63,7 @@ searchInput.addEventListener('keyup', () => {
 for (let i = 0; i < orderImage.length; i++) {
     orderImage[i].addEventListener('click', (event) => {
         orderImage[i].style.pointerEvents = "none";
+
         clickableImage[event.target.name] = 'none';
         localStorage.setItem('clickableImage', JSON.stringify(clickableImage));
         console.log("clicabel = " + localStorage.getItem('clickableImage'));
@@ -64,6 +71,8 @@ for (let i = 0; i < orderImage.length; i++) {
         let myorder = document.createElement('div');
         myorder.setAttribute('class', 'orderList');
         myorder.setAttribute('name', 'order_list');
+
+
 
         let name = document.createElement('span');
         name.setAttribute('name', 'order_name');
@@ -84,10 +93,13 @@ for (let i = 0; i < orderImage.length; i++) {
         myorder.appendChild(count);
 
         let ord_name = event.target.name;
+        // Object.assign(orderData, { ord_name: count.innerHTML });
+
         console.log(count.innerHTML);
         orderData[ord_name] = count.innerHTML;
         userOrderData.value = JSON.stringify(orderData);
         localStorage.setItem('orderData', JSON.stringify(orderData));
+
         let plusBtn = document.createElement('button');
         plusBtn.setAttribute('type', 'button');
         plusBtn.setAttribute('id', event.target.id);
@@ -96,6 +108,7 @@ for (let i = 0; i < orderImage.length; i++) {
         spanPlusBtn.setAttribute('class', 'glyphicon glyphicon-plus')
         plusBtn.appendChild(spanPlusBtn);
         plusBtn.onclick = (event2) => {
+
             incrementAction(event2);
         };
         myorder.appendChild(plusBtn);
@@ -108,6 +121,7 @@ for (let i = 0; i < orderImage.length; i++) {
         minusBtn.appendChild(spanMinusBtn);
 
         minusBtn.onclick = (event2) => {
+
             decrementAction(event2);
         }
         myorder.appendChild(minusBtn);
@@ -132,6 +146,7 @@ for (let i = 0; i < orderImage.length; i++) {
             let ord_name = event.target.name;
             delete orderData[ord_name];
             userOrderData.value = JSON.stringify(orderData);
+
             localStorage.setItem('orderData', JSON.stringify(orderData));
             clickableImage[ord_name] = 'auto';
             localStorage.setItem('clickableImage', JSON.stringify(clickableImage));
@@ -154,6 +169,7 @@ function calculateTotalPrice() {
     totalPrice.innerHTML = total;
     priceInput.value = total;
 }
+
 
 function incrementAction(event2) {
     let val = parseInt(event2.target.previousElementSibling.innerHTML);
@@ -194,6 +210,7 @@ function removeAction(event2) {
     event2.target.parentElement.remove();
     calculateTotalPrice();
 }
+
 
 function renderElement(orderData,productPrice,totalProductPrice) {
     Object.keys(orderData).forEach(function (key) {

@@ -2,14 +2,38 @@
 
   if($_SERVER['REQUEST_METHOD'] != 'POST')
   {
-    header('Location:/add_product.php');
+    header('Location:/add_user.php');
   }
+
+  $errors = "";
+  if(!isset($_POST['user_name']) || empty($_POST['user_name'])){
+    $errors .= "1";
+  }
+  if(!isset($_POST['user_pass']) || empty($_POST['user_pass'])
+    || $_POST['user_pass'] != $_POST['confirm_pass'])
+  {
+    $errors .= '4';
+  }
+  if(!isset($_POST['user_email']) || empty($_POST['user_email'])
+      || !filter_var($_POST['user_email'], FILTER_VALIDATE_EMAIL))
+  {
+    $errors .= '5';
+  }
+  if(!empty($errors))
+  {
+    header('Location:/Cafeteria/add_user.php?errors=e'.$errors);
+  }
+
+
   require 'dbConnection.php';
 
-  $product_name = $_POST['product_name'];
-  $product_price = $_POST['price'];
-  $cat_id = $_POST['category'];
-  $product_status = 'available';
+  $user_name = $_POST['user_name'];
+  $user_email = $_POST['user_email'];
+  $user_pass = password_hash($_POST['user_pass'], PASSWORD_DEFAULT);
+  $room_num = $_POST['room_num'];
+  $ext = $_POST['ext'];
+
+
 
   $target_dir = "Layout/images/";
   $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
@@ -51,11 +75,11 @@
       }
   }
 
-  $stmt = $con->prepare("INSERT INTO Products (name, price, img_path, status, cat_id)
-  VALUES (?,?,?,?,?)");
-  if ($stmt->execute(array($product_name, $product_price, $target_file,
-    $product_status, $cat_id))) {
-    header('Location:products.php');
+  $stmt = $con->prepare("INSERT INTO User (name, email, password, img_path, room_id, group_id)
+  VALUES (?,?,?,?,?,?)");
+  if ($stmt->execute(array($user_name, $user_email, $user_pass, $target_file,
+    $room_num, 0))) {
+    header('Location:users.php');
   }
 
 ?>

@@ -1,8 +1,6 @@
 <?php
 
   include('init.php');
-
-
   if(!isset($_SESSION['User']))
   {
     header('Location:index.php');
@@ -14,12 +12,12 @@
 <html>
   <head>
     <title>Orders</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   </head>
   <body>
-   <div class="bg-warning text-black w-75 .h-100 m-5 mb-4 border-danger rounded mx-auto pt-4 bg-warning">
+   <div class="container">
      <h1 class="font-weight-bold d-flex justify-content-center mb-3">Orders</h1>
-     <?php
+
+       <?php
         $stmt = $con->prepare("SELECT * FROM Orders");
         $stmt->execute();
         while ($row = $stmt->fetch()) {
@@ -28,18 +26,16 @@
            <table class="table">
              <thead class="thead-dark">
               <tr>
-                <th scope="col"> <h4 class="font-weight-bold m-1">#</h4></th>
                 <th scope="col"><h4 class="font-weight-bold m-1">Order Date</h4></th>
                 <th scope="col"><h4 class="font-weight-bold m-1">Name</h4></th>
                 <th scope="col"><h4 class="font-weight-bold m-1">Room</h4></th>
                 <th scope="col"><h4 class="font-weight-bold m-1">Ext.</h4></th>
+                <th scope="col"><h4 class="font-weight-bold m-1">Note</h4></th>
                 <th scope="col"><h4 class="font-weight-bold m-1">Action</h4></th>
               </tr>
             </thead>
             <tbody>
               <tr>
-
-                <th scope="row" ><h4 class="font-weight-bold m-1">1</h4></th>
                 <td>
                   <h4 class="font-weight-bold m-1">
                     <?php echo $row['order_date'] ?>
@@ -67,6 +63,11 @@
                   </h4>
                 </td>
                 <td>
+                  <h4 class="font-weight-bold m-1">
+                    <?php echo $row['note'] ?>
+                  </h4>
+                </td>
+                <td>
                   <button type="submit" class="btn btn-danger font-weight-bold">
                     <h5 class="font-weight-bold">
                       delever
@@ -86,16 +87,19 @@
             $stmt3->execute(array($row2['product_id']));
 
               while ($row3 = $stmt3->fetch()) {
-                echo '<div style="display: inline-block" class="card m-3" style="width: 18rem;">';
-                  echo '<img class="card-img-top" width="25%" height="150px" src="'.$row3['img_path'].'" alt="Card image cap">';
-                  echo '<div class="card-body">';
-                    echo '<h5 class="card-title">'.$row3['name'].'</h5>';
-                    echo '<p class="card-text">'.$row2['count'].'</p>';
-                  echo '</div>';
-                echo '</div>';
+                  ?>
+              <div style="display: inline-block" class="card m-3" style="width: 18rem;">
+              <img class="card-img-top" width="25%" height="150px" src="<?=$row3['img_path']?>" alt="Card image cap">
+                  <div class="card-body">
+                      <h5 class="card-title"><?=$row3['name']?></h5>
+                      <p class="card-text"><?=$row2['count']?></p>
+                  </div>
+              </div>
+              <?php
               }
           }
-        ?>
+          ?>
+          <h6 style="font-size: 20px;">Total:-  <?=$row['cost'] ?></h6>
           </div>
         </div>
      <?php
