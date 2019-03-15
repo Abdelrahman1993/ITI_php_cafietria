@@ -53,12 +53,13 @@ CREATE TABLE `Orders` (
   `room_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `order_date` date NOT NULL,
+  `note` text,
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
   KEY `room_id` (`room_id`),
   CONSTRAINT `Orders_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `User` (`id`),
   CONSTRAINT `Orders_ibfk_3` FOREIGN KEY (`room_id`) REFERENCES `Room` (`room_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -67,7 +68,7 @@ CREATE TABLE `Orders` (
 
 LOCK TABLES `Orders` WRITE;
 /*!40000 ALTER TABLE `Orders` DISABLE KEYS */;
-INSERT INTO `Orders` VALUES (4,'done',40,123,5,'2019-03-12'),(6,'done',40,123,5,'2019-03-12'),(7,'done',70,123,5,'2019-03-13');
+INSERT INTO `Orders` VALUES (4,'done',40,123,5,'2019-03-12',NULL),(6,'done',40,123,5,'2019-03-12',NULL),(7,'done',70,123,5,'2019-03-13',NULL),(8,'Processing',120,123,6,'2019-03-15','hhhhhhhhhhhhh');
 /*!40000 ALTER TABLE `Orders` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -97,7 +98,7 @@ CREATE TABLE `Products` (
 
 LOCK TABLES `Products` WRITE;
 /*!40000 ALTER TABLE `Products` DISABLE KEYS */;
-INSERT INTO `Products` VALUES (1,' tea',22,'Layout/images/4.png','available',1),(4,'milk',20,'Layout/images/4.png','available',4),(5,'  tea3',10,'Layout/images/4.png','Processing',1),(6,'rrr',10,'Layout/images/4.png','Processing',1),(7,'ttt',10,'Layout/images/4.png','Processing',1),(8,'tett',10,'Layout/images/4.png','Processing',1),(9,'tdfd',10,'Layout/images/4.png','Processing',1),(10,'tsfsd',10,'Layout/images/4.png','Processing',1),(11,'aaa',10,'Layout/images/4.png','Processing',1);
+INSERT INTO `Products` VALUES (1,'english tea',40,'Layout/images/7.jpeg','available',1),(4,'milk',20,'Layout/images/4.png','available',4),(5,'  tea3',10,'Layout/images/4.png','Processing',1),(6,'rrr',10,'Layout/images/4.png','Processing',1),(7,'ttt',10,'Layout/images/4.png','Processing',1),(8,'tett',10,'Layout/images/4.png','Processing',1);
 /*!40000 ALTER TABLE `Products` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -143,9 +144,10 @@ CREATE TABLE `User` (
   `group_id` int(11) DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`),
+  UNIQUE KEY `name` (`name`),
   KEY `room_id` (`room_id`),
   CONSTRAINT `User_ibfk_1` FOREIGN KEY (`room_id`) REFERENCES `Room` (`room_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -154,7 +156,7 @@ CREATE TABLE `User` (
 
 LOCK TABLES `User` WRITE;
 /*!40000 ALTER TABLE `User` DISABLE KEYS */;
-INSERT INTO `User` VALUES (4,'medo','medo@gmail.com','$2y$10$KcE//mLkx0PIPQCtjx8bKu19xRWTpJzWpklM4IVALDYbT4/uL4Hd2','Layout/images/4.png',123,1),(5,'awad','awad@gmail.com','$2y$10$KcE//mLkx0PIPQCtjx8bKu19xRWTpJzWpklM4IVALDYbT4/uL4Hd2','Layout/images/4.png',123,0);
+INSERT INTO `User` VALUES (5,'awad','awad@gmail.com','$2y$10$KcE//mLkx0PIPQCtjx8bKu19xRWTpJzWpklM4IVALDYbT4/uL4Hd2','Layout/images/4.png',123,0),(6,'samman','sam@gmail.com','$2y$10$WMK8QaxjSDvDUA2vvg7I.eJDuL1D.tKpFQUJXcfsdAtb7S9MwiZK2','Layout/images/7.jpeg',123,0),(7,'medo','medo@gmail.com','$2y$10$KcE//mLkx0PIPQCtjx8bKu19xRWTpJzWpklM4IVALDYbT4/uL4Hd2','Layout/images/4.png',123,1),(9,'sam','sam1@gmail.com','$2y$10$KcE//mLkx0PIPQCtjx8bKu19xRWTpJzWpklM4IVALDYbT4/uL4Hd2','Layout/images/4.png',123,0);
 /*!40000 ALTER TABLE `User` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -182,7 +184,7 @@ CREATE TABLE `orders_products` (
 
 LOCK TABLES `orders_products` WRITE;
 /*!40000 ALTER TABLE `orders_products` DISABLE KEYS */;
-INSERT INTO `orders_products` VALUES (4,1,1),(6,1,1),(7,1,2),(7,4,1);
+INSERT INTO `orders_products` VALUES (4,1,1),(6,1,1),(7,1,2),(7,4,1),(8,1,2),(8,4,2);
 /*!40000 ALTER TABLE `orders_products` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -195,4 +197,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-03-13 17:46:28
+-- Dump completed on 2019-03-15 15:25:23

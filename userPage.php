@@ -2,10 +2,12 @@
 
 $noHeader="";
 include('init.php');
+session_start();
+
 if(!isset($_SESSION['User']))
-  {
-    header('Location:index.php');
-  }
+{
+  header('Location:index.php');
+}
 ?>
     <div class="container-fluid" id="wrapper">
         <div class="row">

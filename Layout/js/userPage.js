@@ -12,12 +12,7 @@ let orderList = document.getElementsByClassName('orderList');
 let priceInput = document.getElementById('priceInput');
 let userOrderData = document.getElementById('order_data');
 let totalP;
-let orderData = {};
 let flag = 0;
-
-searchInput.addEventListener('keyup', () => {
-    console.log("search");
-
 
 if (localStorage.getItem('productPrice') == null) {
     var productPrice = {};
@@ -293,9 +288,9 @@ function renderElement(orderData,productPrice,totalProductPrice) {
 function img_click(clickableImage) {
     Object.keys(clickableImage).forEach(function (key) {
         console.log('Key : ' + key + ', Value : ' + clickableImage[key])
-        for(let a=0;a<orderImage.length;a++){
-            if(orderImage[a].name==key){
-            orderImage[a].style.pointerEvents = clickableImage[key];
+        for (let a = 0; a < orderImage.length; a++) {
+            if (orderImage[a].name == key) {
+                orderImage[a].style.pointerEvents = clickableImage[key];
             }
         }
 
