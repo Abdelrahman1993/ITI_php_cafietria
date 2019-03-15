@@ -19,10 +19,10 @@ public $connector ;
 
 public function __construct()
 {
-    $this->dbname="Cafeteria2";
+    $this->dbname="ITI_Cafeteria";
     $this->host="localhost";
-    $this->dbuser="abdo";
-    $this->upasswd="abdo9111993";
+    $this->dbuser="root";
+    $this->upasswd="";
     $this->uri = "mysql:host=$this->host;dbname=$this->dbname";
     $this->connector = new PDO($this->uri, $this->dbuser,$this->upasswd);
     $this->connector->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
