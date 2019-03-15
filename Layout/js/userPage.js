@@ -20,12 +20,17 @@ if (localStorage.getItem('productPrice') == null) {
     var productPrice = JSON.parse(localStorage.getItem('productPrice'));
 }
 
+if (localStorage.getItem('totalProductPrice') == null) {
+    var totalProductPrice = {};
+} else {
+    var totalProductPrice = JSON.parse(localStorage.getItem('totalProductPrice'));
+}
+
 if (localStorage.getItem('orderData') == null) {
     var orderData = {};
 } else {
     var orderData = JSON.parse(localStorage.getItem('orderData'));
-    console.log('llll = ' + localStorage.getItem('orderData'));
-    renderElement(orderData,productPrice);
+    renderElement(orderData,productPrice,totalProductPrice);
 }
 
 
@@ -36,9 +41,7 @@ if (localStorage.getItem('clickableImage') == null) {
     img_click(clickableImage);
 }
 
-
 searchInput.addEventListener('keyup', () => {
-    console.log("search");
     let productList = document.getElementsByClassName('productName');
     let filter = searchInput.value.toUpperCase();
     for (let i = 0; i < productList.length; i++) {
@@ -68,7 +71,10 @@ for (let i = 0; i < orderImage.length; i++) {
         name.appendChild(document.createTextNode(event.target.name));
         productPrice[event.target.name]=event.target.alt;
         localStorage.setItem('productPrice',JSON.stringify(productPrice));
-
+         
+        totalProductPrice[event.target.name]=totalP;
+        localStorage.setItem('totalProductPrice',JSON.stringify(totalProductPrice));
+        
         let count = document.createElement('span');
         count.setAttribute('class', 'orderCount');
         count.setAttribute('name', 'order_count');
@@ -157,6 +163,10 @@ function incrementAction(event2) {
     event2.target.previousElementSibling.innerHTML = val;
     let ord_name = event2.target.parentElement.childNodes[0].innerHTML;
     orderData[ord_name] = val;
+
+    totalProductPrice[ord_name]=totalP;
+    localStorage.setItem('totalProductPrice',JSON.stringify(totalProductPrice));
+
     userOrderData.value = JSON.stringify(orderData);
     localStorage.setItem('orderData', JSON.stringify(orderData));
     calculateTotalPrice();
@@ -171,6 +181,9 @@ function decrementAction(event2) {
         event2.target.parentElement.childNodes[1].innerHTML = val;
         let ord_name = event2.target.parentElement.childNodes[0].innerHTML;
         orderData[ord_name] = val;
+        totalProductPrice[ord_name]=totalP;
+        localStorage.setItem('totalProductPrice',JSON.stringify(totalProductPrice));
+
         userOrderData.value = JSON.stringify(orderData);
         localStorage.setItem('orderData', JSON.stringify(orderData));
     }
@@ -182,7 +195,7 @@ function removeAction(event2) {
     calculateTotalPrice();
 }
 
-function renderElement(orderData,productPrice) {
+function renderElement(orderData,productPrice,totalProductPrice) {
     Object.keys(orderData).forEach(function (key) {
         console.log('Key : ' + key + ', Value : ' + orderData[key])
         let myorder = document.createElement('div');
@@ -232,7 +245,7 @@ function renderElement(orderData,productPrice) {
 
         let price = document.createElement('span');
         price.setAttribute('class', 'productPrice');
-        price.appendChild(document.createTextNode(totalP))
+        price.appendChild(document.createTextNode(totalProductPrice[key]));
         myorder.appendChild(price);
 
         let removeBtn = document.createElement('button');
