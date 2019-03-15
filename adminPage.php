@@ -54,10 +54,10 @@ if(!isset($_SESSION['User']))
                     <div>
                     <strong style="display: inline;">Add to User : </strong>
                     <select name="user_name" class="form-control form-control-sm">
-                        <option selected>Select User </option>
+                        <!-- <option selected>Select User </option> -->
                         <?php
-                            $stmt = $con->prepare("SELECT * FROM User");
-                            $stmt->execute();
+                            $stmt = $con->prepare("SELECT * FROM User WHERE id <> ?");
+                            $stmt->execute(array($_SESSION['User']['id']));
                             while ($row = $stmt->fetch()) {
                                 echo '<option value="'.$row['name'].'" >'.$row['name'].'</option>';
                             }
@@ -112,6 +112,6 @@ if(!isset($_SESSION['User']))
             </div>
         </div>
     </div>
-    <script src="Layout/js/userPage.js"></script>
+    <script src="Layout/js/adminPage.js"></script>
 </body>
 </html>
