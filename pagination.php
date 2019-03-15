@@ -28,7 +28,7 @@ $no_of_records_per_page = 3;
 $offset = ($pageno-1) * $no_of_records_per_page;
 
 include "dbConnection.php";
-if($tableName=="products"){
+if($tableName=="Products"){
     $stmt_1 = $con->prepare("SELECT COUNT(*) FROM $tableName");
     $stmt_1->execute();
     $total_rows = $stmt_1->fetch()[0];
