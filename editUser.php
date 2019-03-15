@@ -7,6 +7,7 @@
     header('Location:index.php');
   }
 
+
 require_once('model/user.php');
 $rom=new User();
 $rooms=$rom->getRooms();
@@ -53,6 +54,7 @@ if(!empty($_GET['id']))
 <table>
  <tr>
  	<h1>Edit User</h1>
+
  </tr>
  <tr>
  	<td><label>Name</label></td>
@@ -95,6 +97,7 @@ if(!empty($_GET['id']))
 <td><label>User Picture</label></td>
   <td><input type="file" name="fileToUpload"  accept='image/jpeg,image/jpg,image/png' ></td>
 <td> <img src="<?php echo $_SESSION['img']; ?>" width="150" height="150" /></td>
+
  </tr>
  <tr>
  	<td><input type="submit" name="btn_Save" value="Edit"></td>

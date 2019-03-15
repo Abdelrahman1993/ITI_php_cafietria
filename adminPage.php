@@ -96,15 +96,17 @@ if(!isset($_SESSION['User']))
                 <div class="row">
                     <h1>Orders</h1>
                    <?php
-                     $stmt = $con->prepare("SELECT * FROM Products");
-                     $stmt->execute();
-                     while ($row = $stmt->fetch()) {
-                        echo '<div class="col-lg-3">';
-                        echo '<img alt="'.$row['price'].'" name="'.$row['name'].'" class="imgSize" id="'.$row['id'].'" src="'.$row['img_path'].'" /><br>';
-                        echo  '<strong class="productName">'.$row['name'].'</strong><br>';
-                        echo '<strong> price:</strong><strong class="price">'.$row['price'].'</strong><strong> EGP</strong>';
-                        echo ' </div>';
-                     }
+                    $tableName ="Products";
+                    include "pagination.php";
+                    //  $stmt = $con->prepare("SELECT * FROM Products");
+                    //  $stmt->execute();
+                    //  while ($row = $stmt->fetch()) {
+                    //     echo '<div class="col-lg-3">';
+                    //     echo '<img alt="'.$row['price'].'" name="'.$row['name'].'" class="imgSize" id="'.$row['id'].'" src="'.$row['img_path'].'" /><br>';
+                    //     echo  '<strong class="productName">'.$row['name'].'</strong><br>';
+                    //     echo '<strong> price:</strong><strong class="price">'.$row['price'].'</strong><strong> EGP</strong>';
+                    //     echo ' </div>';
+                    //  }
                    ?>
             </div>
             </div>

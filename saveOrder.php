@@ -45,12 +45,25 @@ if(isset($_POST['submit'])){
 
         if($admin==1){
             $user_name=$_POST['user_name'];
+
+            // $get_user = "SELECT * FROM User where name = '$user_name'";
+            // if($result_user = mysqli_query($conn, $get_user)){
+            //     if(mysqli_num_rows($result_user) > 0){
+            //         while($row_user = mysqli_fetch_array($result_user)){
+            //            $user_id=$row_user['id'];
+            //            $sql= 'INSERT INTO Orders (order_status,cost,room_id,user_id,order_date,notes)
+            //            VALUES ("Processing",'.$cost.','.$roomId.','.$user_id.',"'.date("Y-m-d  H:i:s",time()).'","'.$note.'")';           
+            //            save_user_data($sql);   
+            //     }
+            //     }
+            // }
             $stmt_1 = $con->prepare("SELECT * FROM User where name = ?");
             $stmt_1->execute(array($user_name));          
             while ($row_user = $stmt_1->fetch()) {
                 $user_id=$row_user['id'];
                 // $sql= 'INSERT INTO Orders (order_status,cost,room_id,user_id,order_date,notes)
                 // VALUES ("Processing",'.$cost.','.$roomId.','.$user_id.',"'.date("Y-m-d  H:i:s",time()).'","'.$note.'")';           
+
                  $stmt_2 = $con->prepare("INSERT INTO Orders (order_status,cost,room_id,user_id,order_date, note)
                  VALUES ('Processing',?,?,?,?,?)");
                   if($stmt_2->execute(array($cost,$roomId,$user_id,date("Y-m-d  H:i:s",time()),$note))){
@@ -60,9 +73,9 @@ if(isset($_POST['submit'])){
 
         }else{
             $user_id=$_SESSION['User']['id'];
-            $stmt_3 = $con->prepare("INSERT INTO Orders (order_status,cost,room_id,user_id,order_date)
+            $stmt_3 = $con->prepare("INSERT INTO Orders (order_status,cost,room_id,user_id,order_date, note)
                  VALUES ('Processing',?,?,?,?)");
-                  if($stmt_3->execute(array($cost,$roomId,$user_id,date("Y-m-d  H:i:s",time())))){
+                  if($stmt_3->execute(array($cost,$roomId,$user_id,date("Y-m-d  H:i:s",time()),$note))){
                     save_user_data($con,$admin); 
                   }
     }
@@ -115,6 +128,3 @@ function save_user_data($con,$admin){
 
 }
 
-
-
- 

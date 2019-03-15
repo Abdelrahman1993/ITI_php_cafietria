@@ -11,7 +11,6 @@
   $cat_id = $_POST['category'];
   $product_status = 'available';
 
-
   $target_dir = "Layout/images/";
   $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
   $uploadOk = 1;

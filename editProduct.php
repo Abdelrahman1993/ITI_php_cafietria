@@ -2,10 +2,11 @@
 
   include('init.php');
 
-  if(!isset($_SESSION['User']))
+if(!isset($_SESSION['User']))
   {
     header('Location:index.php');
   }
+
 
 require_once('model/products.php');
 require_once('model/category.php');
@@ -47,6 +48,7 @@ if(!empty($_GET['id']))
 </head>
 <body>
 <form action="edit_current_product.php" method="post" enctype="multipart/form-data">
+
 <center>
   <h1> Edit Product </h1>
 <table>
@@ -64,6 +66,7 @@ if(!empty($_GET['id']))
  	<td><label>Category</label></td>
  	<td>
  		<select name="category" required>
+
     <?php
         $cid;
         $catnam;
@@ -93,12 +96,14 @@ if(!empty($_GET['id']))
  </tr>
   <tr>
  	<td><label>Status</label></td>
+
  	<td><input type="text" name="product_quantity" min="0"  required
     value="<?php echo $_SESSION['proquantity'];?>" /></td>
  </tr>
   <tr>
   <td><label>Product Picture</label></td>
   <td><input type="file" name="fileToUpload"  accept='image/jpeg,image/jpg,image/png' ></td>
+
 
 <td colspan="2"> <img src="<?php echo $_SESSION['imgpath'];?>" width="100" height="100"/> </td>
  </tr>
