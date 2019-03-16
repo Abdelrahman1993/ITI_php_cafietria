@@ -7,17 +7,6 @@
 
 ?>
 
-
-<head>
-    <title>Cafateria</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-</head>
-
 <?php
 if (isset($_GET['pageno'])) {
     $pageno = $_GET['pageno'];
@@ -27,7 +16,7 @@ if (isset($_GET['pageno'])) {
 $no_of_records_per_page = 3;
 $offset = ($pageno-1) * $no_of_records_per_page;
 
-include "dbConnection.php";
+  //include "dbConnection.php";
 if($tableName=="Products"){
     $stmt_1 = $con->prepare("SELECT COUNT(*) FROM $tableName");
     $stmt_1->execute();
@@ -39,11 +28,19 @@ if($tableName=="Products"){
     $stmt_2->bindParam(':to_1',$no_of_records_per_page , \PDO::PARAM_INT);
     $stmt_2->execute();
     while($row = $stmt_2->fetch()){
-        echo '<div class="col-lg-3">';
-        echo '<img alt="'.$row['price'].'" name="'.$row['name'].'" class="imgSize" id="'.$row['id'].'" src="'.$row['img_path'].'" /><br>';
-        echo  '<strong class="productName">'.$row['name'].'</strong><br>';
-        echo '<strong> price:</strong><strong class="price">'.$row['price'].'</strong><strong> EGP</strong>';
-        echo ' </div>';
+
+      echo '<div class="col-sm-6  col-md-3">';
+		 	echo '<div class="thumbnail item-box">';
+		 	echo '<span class="price-tag">'.'price '.$row['price'].'</span>';
+		 	echo  '<img class="img-responsive imgSize" name="'.$row['name'].'"
+                id="'.$row['id'].'" src="'.$row['img_path'].'" alt="'.$row['price'].'"/><br>';
+		 	echo '<div  class="caption">';
+
+		 	echo '<p class="productName">'.$row['name'].'</p>';
+		 	echo '</div>';
+		 	echo '</div>';
+		  echo '</div>';
+
     }
 }else if($tableName=="ProductsPage"){
     $stmt_1 = $con->prepare("SELECT COUNT(*) FROM Products");
@@ -112,14 +109,9 @@ while($row= $stmt_2->fetch())
     $stmt_2->bindParam(':from_1',$offset , \PDO::PARAM_INT);
     $stmt_2->bindParam(':to_1',$no_of_records_per_page , \PDO::PARAM_INT);
     $stmt_2->execute();
-
-
-
-    // $stmt = $con->prepare("SELECT * FROM Orders");
-    // $stmt->execute();
     while ($row = $stmt_2->fetch()) {
  ?>
-     <div class="border-danger" style="border: 2px solid black">
+     <div class="table-responsive " >
        <table class="table">
          <thead class="thead-dark">
           <tr>
@@ -140,7 +132,14 @@ while($row= $stmt_2->fetch())
             </td>
             <td>
               <h4 class="font-weight-bold m-1">
-                <?php echo $row['user_id'] ?>
+                <?php
+                  $stmt15 = $con->prepare("SELECT name FROM User where id = ?");
+                  $stmt15->execute(array($row['user_id']));
+                  while ($row15 = $stmt15->fetch()) {
+                    echo $row15['name'];
+                  }
+//                  echo $row['user_id']
+                ?>
               </h4>
             </td>
             <td>
@@ -167,7 +166,7 @@ while($row= $stmt_2->fetch())
             <td>
               <button type="submit" class="btn btn-danger font-weight-bold">
                 <h5 class="font-weight-bold">
-                  delever
+                  Deliver
                 </h5>
               </button>
             </td>
@@ -185,18 +184,23 @@ while($row= $stmt_2->fetch())
 
           while ($row3 = $stmt3->fetch()) {
               ?>
-          <div style="display: inline-block" class="card m-3" style="width: 18rem;">
-          <img class="card-img-top" width="25%" height="150px" src="<?=$row3['img_path']?>" alt="Card image cap">
+          <div style="display: inline-block ; background-color: #5bc0de ; border: #3c3f45 ; border-style: solid;    border-color: #ff0d74;  "  >
+          <img class="card-img-top" width="100px" height="100px" src="<?=$row3['img_path']?>" alt="Card image cap">
               <div class="card-body">
-                  <h5 class="card-title"><?=$row3['name']?></h5>
-                  <p class="card-text"><?=$row2['count']?></p>
+                  <h5 class="card-title" style="background-color: #ff0d74 ">Name : <?=$row3['name']?></h5>
+                  <h5 class="card-title" style="background-color: #4cae4c">Count :<?=$row2['count']?></h5>
               </div>
           </div>
+
+
+
+
+
           <?php
           }
       }
       ?>
-      <h6 style="font-size: 20px;">Total:-  <?=$row['cost'] ?></h6>
+      <h6 style="font-size: 20px;">Total:  <?=$row['cost'] ?></h6>
       </div>
     </div>
  <?php

@@ -45,12 +45,14 @@ searchInput.addEventListener('keyup', () => {
 
     let productList = document.getElementsByClassName('productName');
     let filter = searchInput.value.toUpperCase();
+    console.log(productList);
     for (let i = 0; i < productList.length; i++) {
         let txtValue = productList[i].textContent || productList[i].innerText;
         if (txtValue.toUpperCase().indexOf(filter) > -1) {
-            productList[i].parentElement.style.display = "";
+            productList[i].parentElement.parentElement.parentElement.style.display = "";
         } else {
-            productList[i].parentElement.style.display = "none";
+
+            productList[i].parentElement.parentElement.parentElement.style.display = "none";
         }
     }
 });
@@ -64,7 +66,7 @@ for (let i = 0; i < orderImage.length; i++) {
         console.log("clicabel = " + localStorage.getItem('clickableImageAdmin'));
         totalP = event.target.alt;
         let myorder = document.createElement('div');
-        myorder.setAttribute('class', 'orderList');
+        myorder.setAttribute('class', 'orderList table');
         myorder.setAttribute('name', 'order_list');
 
 
@@ -80,7 +82,7 @@ for (let i = 0; i < orderImage.length; i++) {
         localStorage.setItem('totalProductPriceAdmin',JSON.stringify(totalProductPrice));
         
         let count = document.createElement('span');
-        count.setAttribute('class', 'orderCount');
+        count.setAttribute('class', 'orderCount mg');
         count.setAttribute('name', 'order_count');
         count.appendChild(document.createTextNode("1"))
 

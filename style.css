@@ -1,5 +1,6 @@
 body {
     font-family: "Lato", sans-serif;
+  /*background:url("");*/
   }
   strong#productName{
     padding-left: 30%;
@@ -9,16 +10,17 @@ body {
       width: 100px;
       height: 100px;
   }
-  img.imgSize{
-    width: 100px;
-    height: 125px;
-    float: left;
-    margin-left: 40px;
-  }
+  /*img.imgSize{*/
+    /*width: 100px;*/
+    /*height: 125px;*/
+    /*float: left;*/
+    /*margin-left: 40px;*/
+  /*}*/
   #side-bar{
-    background-color: #3385ff;
-    margin-left: 50px;
+    background-color: #fff;
+    margin-left: -1%;
     border-radius: 8px;
+     border-right: 5px solid #337ab7;
   }
   button.btn.btn-primary{
     width: 120px;
@@ -59,9 +61,10 @@ body {
 	border-top: 2px solid #8c8b8b;
 }
   #notes{
-    padding-top: 15px;
-    margin-left: 22px;
-    width: 300px;
+    padding-top: 4%;
+    margin-left: 0%;
+    margin-bottom:4%;
+    width: 100%;
   }
   .confirm{
       text-align: center;
@@ -120,4 +123,61 @@ strong{
     .sidenav {padding-top: 15px;}
     .sidenav a {font-size: 18px;}
   }
+
+
+/* strt pagination page */
+.item-box{
+  position: relative;
+  }
+
+  .price-tag{
+  position: absolute;
+  top: 10px;
+  left: 0px;
+  background-color: #ff0d74;
+  font-weight: bold;
+  color: #FFF;
+  padding: 2px 10px;
+
+
+  }
+  /*end pagination  page*/
+
+.bto{
+  width:100%;
+}
+
+.orderList{
+  background-color: #1b6d85;
+
+}
+.mg{background-color: red;
+margin-right:10%;}
+
+.navbar-inverse{
+  background-color: #ececec;
+  color: white;
+}
+
+.navbar-inverse .navbar-nav > li > a{
+  color:#838383;
+}
+
+.hello{
+  background-color: #e8e8e8;
+  width: 75%;
+  height: 10%;
+  margin-left: 13%;
+ border-right: 5px solid #337ab7;
+  border-left: 5px solid #337ab7;
+  border-top: 5px solid #4cae4c;
+  border-bottom: 5px solid #4cae4c;
+}
+/*.inputMove{*/
+  /*margin-left: 25%;*/
+  /*width: 50%;*/
+/*}*/
+
+
+/* forget pass */
 

@@ -20,7 +20,8 @@
 
                     <div style="margin-left: 1000px; width:300px;">
                         <img src="Layout/images/4.png" width="50px" height="50px" />
-                        <a><?php echo $_SESSION['User']['name'] ?></a>
+                        <a><?php echo $_SESSION['User']['name'] ?></a> |
+                        <a href="logout.php">logout</a>
                     </div>
 
 

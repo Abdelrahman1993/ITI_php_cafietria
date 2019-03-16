@@ -48,9 +48,9 @@ searchInput.addEventListener('keyup', () => {
     for (let i = 0; i < productList.length; i++) {
         let txtValue = productList[i].textContent || productList[i].innerText;
         if (txtValue.toUpperCase().indexOf(filter) > -1) {
-            productList[i].parentElement.style.display = "";
+            productList[i].parentElement.parentElement.parentElement.style.display = "";
         } else {
-            productList[i].parentElement.style.display = "none";
+            productList[i].parentElement.parentElement.parentElement.style.display = "none";
         }
     }
 });

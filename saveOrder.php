@@ -106,7 +106,7 @@ function save_user_data($con,$admin){
                 $stmt2 = $con->prepare("INSERT INTO orders_products (order_id,product_id,count)
                 VALUES (?,?,?)");
                 if ($stmt2->execute(array($lastID,$rowData['id'],$v))) {
-                          $mainPage=1;
+                  $mainPage=1;
                 }
             } 
         }
@@ -114,11 +114,11 @@ function save_user_data($con,$admin){
     if($mainPage==1){
         if($admin==1){
             // echo "ADMIN";
-             // header('Location:adminPage.php');
+              header('Location:adminPage.php');
               exit;
         }else{
             // echo "USER";
-            //header('Location:userPage.php');
+            header('Location:userPage.php');
             exit;
         }
     }else{

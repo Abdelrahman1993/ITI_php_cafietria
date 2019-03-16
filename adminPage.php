@@ -10,20 +10,23 @@ if(!isset($_SESSION['User']))
 
     <div class="container-fluid" id="wrapper">
         <div class="row">
-            <div id="side-bar" class="col-lg-4">
+            <div id="side-bar" class="col-lg-3">
             <form method="post" action="saveOrder.php" >
-            <input type="hidden" name="order_data" value="" id="order_data">
-                <div id="orders">
-
-
-                </div>
+                    <div class="input-group">
+                        <input type="text" id="search" class="form-control" placeholder="Search" name="search">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" type="submit">
+                                <i class="glyphicon glyphicon-search"></i>
+                            </button>
+                        </div>
+                    </div>
 
                 <div>
                     <span class="orderName">Notes :</span><br>
                     <textarea id="notes" name="notes" ></textarea>
                 </div>
                 <div>
-                    <span class="orderName">Room : </span>
+
                     <select name="room" class="form-control form-control-sm">
                         <option selected>Select your Room</option>
                         <?php
@@ -37,9 +40,9 @@ if(!isset($_SESSION['User']))
                 </div>
                 <br>
                     <div>
-                    <strong style="display: inline;">Add to User : </strong>
+
                     <select name="user_name" class="form-control form-control-sm">
-                        <!-- <option selected>Select User </option> -->
+                        <option class="disabled" selected>Select Customer</option>
                         <?php
                             $stmt = $con->prepare("SELECT * FROM User WHERE id <> ?");
                             $stmt->execute(array($_SESSION['User']['id']));
@@ -57,28 +60,18 @@ if(!isset($_SESSION['User']))
                     <input id="priceInput" type="hidden" name="cost" value="">
                     <strong name="cost" id="totalPrice">0</strong>
                     <br><br>
-                    <button type="submit" name="submit" class="btn btn-primary">Confirm
+                    <button type="submit" name="submit" class="btn btn-primary bto">Confirm Order
                     </button>
                 </div>
+                <input type="hidden" name="order_data" value="" id="order_data">
                 </form>
+
+                <div id="orders">
+
+                </div>
             </div>
-            <form class="navbar-form navbar-brand" style="margin-right: 5px" action="/action_page.php">
-                    <div class="input-group">
-                        <input type="text" id="search" class="form-control" placeholder="Search" name="search">
-                        <div class="input-group-btn">
-                            <button class="btn btn-default" type="submit">
-                                <i class="glyphicon glyphicon-search"></i>
-                            </button>
-                        </div>
-                    </div>
-                </form>
 
-            <div class="col-lg-7">
-              
-
-                <hr class="style5">
-               
-                <div class="row">
+            <div class="col-lg-8">
                     <h1>Orders</h1>
                    <?php
                     $tableName ="Products";
@@ -93,7 +86,7 @@ if(!isset($_SESSION['User']))
                     //     echo ' </div>';
                     //  }
                    ?>
-            </div>
+
             </div>
         </div>
     </div>
