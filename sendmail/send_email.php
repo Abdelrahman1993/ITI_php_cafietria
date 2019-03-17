@@ -1,7 +1,8 @@
 <?php
   session_start();
+  //print_r($_SESSION);
   $noHeader = '';
-  include 'dbConnection.php';
+  include 'init.php';
 
   echo "0000<br>";
   if($_SERVER['REQUEST_METHOD'] == 'POST')
