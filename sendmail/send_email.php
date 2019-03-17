@@ -36,7 +36,9 @@
       include 'PHPMailer/src/PHPMailer.php';
       /* SMTP class, needed if you want to use SMTP. */
       include 'PHPMailer/src/SMTP.php';
+      echo "1111111111";
       $mail = new \PHPMailer\PHPMailer\PHPMailer(TRUE);
+      echo "frwgthnh";
       $mail->IsSMTP();
       $mail->Host = 'smtp-mail.outlook.com';
       $mail->SMTPAuth = true;
