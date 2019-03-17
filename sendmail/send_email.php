@@ -38,15 +38,15 @@
       $mail->Body = 'this is your new password:  '.$_POST['shuffled'];
       $mail->IsSMTP();
       $mail->SMTPSecure = 'ssl';
-      $mail->Host = 'ssl://smtp.gmail.com';
+      $mail->Host = 'smtp-mail.outlook.com';
       $mail->SMTPAuth = true;
-      $mail->Port = 465;
+      $mail->Port = 587;
 
 //      //Set your existing gmail address as user name
-//      $mail->Username = <a href="mailto:awadmohamed233@gmail.com">testerbd18@gmail.com</a>';
-//
-//      //Set the password of your gmail address here
-//      $mail->Password = 'password';
+      $mail->Username = 'zaza_cafe@outlook.com';
+
+      //Set the password of your gmail address here
+      $mail->Password = 'M+e=2018';
       if(!$mail->send()) {
         echo 'Email is not sent.';
         echo 'Email error: ' . $mail->ErrorInfo;
