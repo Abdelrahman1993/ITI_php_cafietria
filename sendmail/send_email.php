@@ -38,7 +38,7 @@
       include 'PHPMailer/src/SMTP.php';
       echo "1111111111";
       $mail = new \PHPMailer\PHPMailer\PHPMailer(TRUE);
-      echo "frwgthnh";
+      echo "frwgthnh<br>";
       $mail->IsSMTP();
       $mail->Host = 'smtp-mail.outlook.com';
       $mail->SMTPAuth = true;
@@ -52,7 +52,7 @@
       $mail->addAddress($username);
       $mail->Subject = 'your new password';
       $mail->Body = 'this is your new password:  '.$_POST['shuffled'];
-
+      echo "ccccccccccc";
       if(!$mail->send()) {
         echo 'Email is not sent.';
         echo 'Email error: ' . $mail->ErrorInfo;
