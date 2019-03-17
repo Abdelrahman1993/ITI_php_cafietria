@@ -6,12 +6,12 @@
   if($_SERVER['REQUEST_METHOD'] == 'POST')
   {
     echo "1111<br>";
-    $user_email = $_POST['user'];
-    echo $user_email;
-    $stmt_1 = $con->prepare("SELECT * FROM User WHERE email = $user_email");
-    print_r($stmt_1);
-    $stmt_1->execute();
-    print_r($stmt_1);
+    $username = $_POST['user'];
+
+    //check if user exist in the db
+    $stmt = $con->prepare("SELECT * FROM User WHERE email = ?");
+    $stmt->execute(array($username));
+
     echo "2222<br>";
     $val_code = "0123456789zxcvbnmqwertyuioplkjhgfdsa";
     $_POST['shuffled'] = str_shuffle($val_code);
