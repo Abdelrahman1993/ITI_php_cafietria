@@ -8,6 +8,8 @@
   include 'PHPMailer/src/PHPMailer.php';
   include 'PHPMailer/src/SMTP.php';
 
+  require 'vendor/autoload.php';
+
   $noHeader = '';
 
   if($_SERVER['REQUEST_METHOD'] == 'POST')
@@ -39,8 +41,8 @@
     $stmt->execute(array($username));
     while ($row = $stmt->fetch()) {
       $mail = new PHPMailer(TRUE);
-
-      $mail->SMTPSecure = 'ssl'; //secure transfer enabled
+      $mail->SMTPDebug = 2;
+      $mail->SMTPSecure = 'tsl'; //secure transfer enabled
 
       $mail->setFrom('zaza_cafe@outlook.com', 'ITI Cafe Admin');
       $mail->addAddress($username);
