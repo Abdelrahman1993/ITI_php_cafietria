@@ -20,30 +20,59 @@
 
     $username = $_POST['user'];
 
+    $val_code = "0123456789zxcvbnmqwertyuioplkjhgfdsa";
+    $_POST['shuffled'] = str_shuffle($val_code);
+    $_POST['shuffled'] = password_hash(substr($_POST['shuffled'], 0, 8));
+
     //check if user exist in the db
     $stmt = $con->prepare("SELECT * FROM User WHERE email = ?");
     $stmt->execute(array($username));
+    while ($row = $stmt->fetch()) {
 
-    $val_code = "0123456789zxcvbnmqwertyuioplkjhgfdsa";
-    $_POST['shuffled'] = str_shuffle($val_code);
-    $_POST['shuffled'] = substr($_POST['shuffled'], 0, 8);
-    $to = $username;
-    $subject = "new password";
-    $txt = "Your new password is :   ".password_hash($_POST['shuffled']);
-    $txt .= "\n";
-    $txt .= "please login with your new password   ";
+      require 'libphp-phpmailer/class.phpmailer.php';
+      require 'libphp-phpmailer/class.smtp.php';
+      $mail = new PHPMailer;
+      $mail->setFrom('zaza_cafe@outlook.com');
+      $mail->addAddress($username);
+      $mail->Subject = 'your new password';
+      $mail->Body = 'this is your new password:  '.$_POST['shuffled'];
+      $mail->IsSMTP();
+      $mail->SMTPSecure = 'ssl';
+      $mail->Host = 'ssl://smtp.gmail.com';
+      $mail->SMTPAuth = true;
+      $mail->Port = 465;
 
-    $m=mail($to,$subject,$txt);
-    if($m)
-    {
-      echo'Check your inbox in mail';
-      $stmt_1 = $con->prepare("update User set password = ? where email= ?");
-      $stmt_1->execute(array($_POST['shuffled'], $user_email));
-      header('Location:index.php');
-    }
-    else
-    {
-     echo'mail is not send';
+//      //Set your existing gmail address as user name
+//      $mail->Username = <a href="mailto:awadmohamed233@gmail.com">testerbd18@gmail.com</a>';
+//
+//      //Set the password of your gmail address here
+//      $mail->Password = 'password';
+      if(!$mail->send()) {
+        echo 'Email is not sent.';
+        echo 'Email error: ' . $mail->ErrorInfo;
+      } else {
+        echo 'Email has been sent.';
+      }
+
+
+
+
+      /////////////////////////////
+//      $to = $username;
+//      $subject = "new password";
+//      $txt = "Your new password is :   " . $_POST['shuffled'];
+//      $txt .= "\n";
+//      $txt .= "please login with your new password   ";
+//
+//      $m = mail($to, $subject, $txt);
+//      if ($m) {
+//        echo 'Check your inbox in mail';
+//        $stmt_1 = $con->prepare("update User set password = ? where email= ?");
+//        $stmt_1->execute(array($_POST['shuffled'], $user_email));
+//        header('Location:index.php');
+//      } else {
+//        echo 'mail is not send';
+//      }
     }
   }
 ?>
