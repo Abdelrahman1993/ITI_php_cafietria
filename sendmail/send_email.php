@@ -8,7 +8,6 @@
   include 'PHPMailer/src/PHPMailer.php';
   include 'PHPMailer/src/SMTP.php';
 
-  require 'vendor/autoload.php';
 
   $noHeader = '';
 
