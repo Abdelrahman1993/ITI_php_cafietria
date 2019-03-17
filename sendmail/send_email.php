@@ -28,7 +28,7 @@
     $stmt = $con->prepare("SELECT * FROM User WHERE email = ?");
     $stmt->execute(array($username));
     while ($row = $stmt->fetch()) {
-
+      echo "00000000000000";
 //    use /PHPMailer/PHPMailer/Exception;
       /* Exception class. */
       include 'PHPMailer/src/Exception.php';
