@@ -1,5 +1,10 @@
 <?php
   session_start();
+  use \PHPMailer\Exception;
+  include 'PHPMailer/src/Exception.php';
+  include 'PHPMailer/src/PHPMailer.php';
+  include 'PHPMailer/src/SMTP.php';
+
   $noHeader = '';
 
   if($_SERVER['REQUEST_METHOD'] == 'POST')
@@ -20,6 +25,8 @@
 
     $username = $_POST['user'];
 
+    echo  $username;
+
     $val_code = "0123456789zxcvbnmqwertyuioplkjhgfdsa";
     $_POST['shuffled'] = str_shuffle($val_code);
     $_POST['shuffled'] = password_hash(substr($_POST['shuffled'], 0, 8));
@@ -28,17 +35,12 @@
     $stmt = $con->prepare("SELECT * FROM User WHERE email = ?");
     $stmt->execute(array($username));
     while ($row = $stmt->fetch()) {
-      echo "00000000000000";
-//    use /PHPMailer/PHPMailer/Exception;
-      /* Exception class. */
-      include 'PHPMailer/src/Exception.php';
-      /* The main PHPMailer class. */
-      include 'PHPMailer/src/PHPMailer.php';
-      /* SMTP class, needed if you want to use SMTP. */
-      include 'PHPMailer/src/SMTP.php';
-      echo "1111111111";
       $mail = new \PHPMailer\PHPMailer\PHPMailer(TRUE);
-      echo "frwgthnh<br>";
+      $mail->setFrom('zaza_cafe@outlook.com', 'ITI Cafe Admin');
+      $mail->addAddress($username);
+      $mail->Subject = 'Reset password';
+      $mail->Body = 'this is your new password:  '.$_POST['shuffled'];
+
       $mail->IsSMTP();
       $mail->Host = 'smtp-mail.outlook.com';
       $mail->SMTPAuth = true;
@@ -48,11 +50,9 @@
 
       $mail->Port = 587;
 
-      $mail->setFrom = 'zaza_cafe@outlook.com';
-      $mail->addAddress($username);
-      $mail->Subject = 'your new password';
-      $mail->Body = 'this is your new password:  '.$_POST['shuffled'];
+
       echo "ccccccccccc";
+
       $mail->send();
       echo "dddddddd";
       if(!$mail->send()) {
