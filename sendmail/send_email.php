@@ -8,7 +8,8 @@
     echo "1111<br>";
     $user_email = $_POST['user'];
     echo $user_email;
-    $stmt_1 = $con->prepare("SELECT * FROM User where email=$user_email");
+    $stmt_1 = $con->prepare("SELECT * FROM User WHERE email = $user_email");
+    print_r($stmt_1);
     $stmt_1->execute();
     print_r($stmt_1);
     echo "2222<br>";

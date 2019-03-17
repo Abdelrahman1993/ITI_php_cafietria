@@ -205,8 +205,6 @@ catch(PDOException $e)
             </ul>
           </li>
 
-
-
           <?php } ?>
           <!-- end of order date, amount sub-group -->
 
