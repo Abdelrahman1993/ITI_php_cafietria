@@ -1,7 +1,5 @@
 <?php
 
-  include 'dbConnection.php';
-
   if($_SERVER['REQUEST_METHOD'] != 'POST')
   {
     header('Location:add_user.php');
@@ -26,8 +24,6 @@
     header('Location:add_user.php?errors=e'.$errors);
   }
 
-
-  require 'dbConnection.php';
 
   $user_name = $_POST['user_name'];
   $user_email = $_POST['user_email'];
@@ -77,11 +73,13 @@
       }
   }
 
+  include 'dbConnection.php';
+
   $stmt = $con->prepare("INSERT INTO User (name, email, password, img_path, room_id, group_id)
   VALUES (?,?,?,?,?,?)");
   if ($stmt->execute(array($user_name, $user_email, $user_pass, $target_file,
     $room_num, 0))) {
     header('Location:users.php');
   }
-
+  echo "kkkkkkkk";
 ?>
