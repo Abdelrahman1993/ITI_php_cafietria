@@ -50,34 +50,20 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
           $mail->Body = 'this is your new password:  '.$_POST['shuffled'];
          /* Finally send the mail. */
          $mail->send();
-      //    header("Location: /cafeteria_system/views/login.php");
+
+         $stmt_1 = $con->prepare("update User set password = ? where email= ?");
+          $stmt_1->execute(array(password_hash($_POST['shuffled'], PASSWORD_DEFAULT), $username));
+          header('Location:index.php');
+
       }
       catch (Exception $e)
       {
-         /* PHPMailer exception. */
          echo $e->errorMessage();
       }
       catch (\Exception $e)
       {
-         /* PHP exception (note the backslash to select the global namespace Exception class). */
          echo $e->getMessage();
       }
-        /////////////////////////////
-//      $to = $username;
-//      $subject = "new password";
-//      $txt = "Your new password is :   " . $_POST['shuffled'];
-//      $txt .= "\n";
-//      $txt .= "please login with your new password   ";
-//
-//      $m = mail($to, $subject, $txt);
-//      if ($m) {
-//        echo 'Check your inbox in mail';
-//        $stmt_1 = $con->prepare("update User set password = ? where email= ?");
-//        $stmt_1->execute(array(password_hash($_POST['shuffled'], PASSWORD_DEFAULT), $username));
-//        header('Location:index.php');
-//      } else {
-//        echo 'mail is not send';
-//      }
     }
   }
 ?>
