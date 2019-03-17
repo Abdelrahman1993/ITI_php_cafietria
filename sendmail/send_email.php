@@ -53,6 +53,8 @@
       $mail->Subject = 'your new password';
       $mail->Body = 'this is your new password:  '.$_POST['shuffled'];
       echo "ccccccccccc";
+      $mail->send();
+      echo "dddddddd";
       if(!$mail->send()) {
         echo 'Email is not sent.';
         echo 'Email error: ' . $mail->ErrorInfo;
