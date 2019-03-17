@@ -2,7 +2,7 @@
 
   if($_SERVER['REQUEST_METHOD'] != 'POST')
   {
-    header('Location:/add_product.php');
+    header('Location:add_product.php');
   }
   require 'dbConnection.php';
 

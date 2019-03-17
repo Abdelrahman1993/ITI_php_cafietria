@@ -2,7 +2,7 @@
 
   if($_SERVER['REQUEST_METHOD'] != 'POST')
   {
-    header('Location:/add_user.php');
+    header('Location:add_user.php');
   }
 
   $errors = "";
@@ -21,7 +21,7 @@
   }
   if(!empty($errors))
   {
-    header('Location:/Cafeteria/add_user.php?errors=e'.$errors);
+    header('Location:add_user.php?errors=e'.$errors);
   }
 
 
