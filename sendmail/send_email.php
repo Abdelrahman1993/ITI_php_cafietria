@@ -32,10 +32,8 @@
     $txt = "Your new password is :   ".password_hash($_POST['shuffled']);
     $txt .= "\n";
     $txt .= "please login with your new password   ";
-    $headers = 'From: awadmohamed@gmail.com' . "\r\n" .
-          'MIME-Version: 1.0' . "\r\n" .
-          'Content-type: text/html; charset=utf-8';
-    $m=mail($to,$subject,$txt,$headers);
+
+    $m=mail($to,$subject,$txt);
     if($m)
     {
       echo'Check your inbox in mail';
