@@ -29,10 +29,14 @@
     $stmt->execute(array($username));
     while ($row = $stmt->fetch()) {
 
-      require 'libphp-phpmailer/class.phpmailer.php';
-      require 'libphp-phpmailer/class.smtp.php';
-      $mail = new PHPMailer;
-
+//    use /PHPMailer/PHPMailer/Exception;
+      /* Exception class. */
+      include 'PHPMailer/src/Exception.php';
+      /* The main PHPMailer class. */
+      include 'PHPMailer/src/PHPMailer.php';
+      /* SMTP class, needed if you want to use SMTP. */
+      include 'PHPMailer/src/SMTP.php';
+      $mail = new \PHPMailer\PHPMailer\PHPMailer(TRUE);
       $mail->IsSMTP();
       $mail->Host = 'smtp-mail.outlook.com';
       $mail->SMTPAuth = true;
