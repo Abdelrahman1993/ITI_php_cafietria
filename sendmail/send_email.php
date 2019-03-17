@@ -33,7 +33,7 @@
     $txt .= "\n";
     $txt .= "please login with your new password   ";
     $headers = 'From: https://cafeteriait.herokuapp.com' . "\r\n";
-    $m=mail($to,$subject,$txt,$headers);
+    $m=mail($to,$subject,$txt);
     if($m)
     {
       echo'Check your inbox in mail';
