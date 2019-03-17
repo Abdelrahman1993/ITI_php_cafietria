@@ -2,11 +2,11 @@
   session_start();
   $noHeader = '';
   include 'init.php';
-  echo "1111<br>";
+  echo "0000<br>";
   if($_SERVER['REQUEST_METHOD'] == 'POST')
   {
+    echo "1111<br>";
     $user_email = $_POST['user'];
-    $user_new_pass = $POST['new_pass'];
     $stmt_1 = $con->prepare("SELECT * FROM User where email= ?");
     $stmt_1->execute(array($user_email));
     echo "2222<br>";
