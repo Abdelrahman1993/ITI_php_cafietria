@@ -20,7 +20,7 @@ if(!isset($_SESSION['User']))
                         <li class="active"><a href="userPage.php">Home</a></li>
                         <li><a href="myorder.php">My Orders</a></li>
                     </ul>
-                    <form class="navbar-form navbar-left" action="/action_page.php">
+<!--                    <form class="navbar-form navbar-left" action="/action_page.php">-->
                         <div class="input-group">
                             <input type="text" id="search" class="form-control" placeholder="Search" name="search">
                             <div class="input-group-btn">
@@ -29,7 +29,7 @@ if(!isset($_SESSION['User']))
                                 </button>
                             </div>
                         </div>
-                    </form>
+<!--                    </form>-->
                     <div style="margin-left: 1000px; width:300px;">
                         <img src="Layout/images/4.png" width="50px" height="50px" />
                         <a href="#">
@@ -54,7 +54,7 @@ if(!isset($_SESSION['User']))
 
                 <div>
                     <span class="orderName" >Notes :</span><br>
-                    <textarea id="notes" name="notes"></textarea>
+                    <textarea style="resize: none;" id="notes" name="notes"></textarea>
                 </div>
                 <div>
                     <span class="orderName">Room : </span>
@@ -66,7 +66,6 @@ if(!isset($_SESSION['User']))
                         while ($row = $stmt->fetch()) {
                             echo '<option value="'.$row['ext'].'" >'.$row['ext'].'</option>';
                         }
-
                         ?>
                     </select>
                     <?php

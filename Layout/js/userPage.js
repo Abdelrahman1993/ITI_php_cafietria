@@ -1,4 +1,15 @@
 
+let url_string = window.location.href;
+let url = new URL(url_string);
+let N = url.searchParams.get("N");
+if(N)
+{
+    let or = document.getElementById('orders');
+    or.innerHTML = '';
+    localStorage.clear();
+}
+
+
 let orderCount = document.getElementById('orderCount');
 let incrementBtn = document.getElementsByClassName('increment');
 let decrementBtn = document.getElementsByClassName('decrement');
@@ -48,9 +59,9 @@ searchInput.addEventListener('keyup', () => {
     for (let i = 0; i < productList.length; i++) {
         let txtValue = productList[i].textContent || productList[i].innerText;
         if (txtValue.toUpperCase().indexOf(filter) > -1) {
-            productList[i].parentElement.style.display = "";
+            productList[i].parentElement.parentElement.parentElement.style.display = "";
         } else {
-            productList[i].parentElement.style.display = "none";
+            productList[i].parentElement.parentElement.parentElement.style.display = "none";
         }
     }
 });

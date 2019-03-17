@@ -1,3 +1,6 @@
+
+console.log("yyyyyyy");
+
 jQuery(document).ready(function(){
 	var accordionsMenu = $('.cd-accordion-menu');
 

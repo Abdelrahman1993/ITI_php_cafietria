@@ -1,4 +1,15 @@
 
+let url_string = window.location.href;
+let url = new URL(url_string);
+let N = url.searchParams.get("N");
+if(N)
+{
+    let or = document.getElementById('orders');
+    or.innerHTML = '';
+    localStorage.clear();
+}
+
+
 let orderCount = document.getElementById('orderCount');
 let incrementBtn = document.getElementsByClassName('increment');
 let decrementBtn = document.getElementsByClassName('decrement');
@@ -45,12 +56,14 @@ searchInput.addEventListener('keyup', () => {
 
     let productList = document.getElementsByClassName('productName');
     let filter = searchInput.value.toUpperCase();
+    // console.log(productList);
     for (let i = 0; i < productList.length; i++) {
         let txtValue = productList[i].textContent || productList[i].innerText;
         if (txtValue.toUpperCase().indexOf(filter) > -1) {
-            productList[i].parentElement.style.display = "";
+            productList[i].parentElement.parentElement.parentElement.style.display = "";
         } else {
-            productList[i].parentElement.style.display = "none";
+
+            productList[i].parentElement.parentElement.parentElement.style.display = "none";
         }
     }
 });
@@ -61,10 +74,10 @@ for (let i = 0; i < orderImage.length; i++) {
 
         clickableImage[event.target.name] = 'none';
         localStorage.setItem('clickableImageAdmin', JSON.stringify(clickableImage));
-        console.log("clicabel = " + localStorage.getItem('clickableImageAdmin'));
+        // console.log("clicabel = " + localStorage.getItem('clickableImageAdmin'));
         totalP = event.target.alt;
         let myorder = document.createElement('div');
-        myorder.setAttribute('class', 'orderList');
+        myorder.setAttribute('class', 'orderList table');
         myorder.setAttribute('name', 'order_list');
 
 
@@ -80,7 +93,7 @@ for (let i = 0; i < orderImage.length; i++) {
         localStorage.setItem('totalProductPriceAdmin',JSON.stringify(totalProductPrice));
         
         let count = document.createElement('span');
-        count.setAttribute('class', 'orderCount');
+        count.setAttribute('class', 'orderCount mg');
         count.setAttribute('name', 'order_count');
         count.appendChild(document.createTextNode("1"))
 
@@ -90,7 +103,7 @@ for (let i = 0; i < orderImage.length; i++) {
         let ord_name = event.target.name;
         // Object.assign(orderData, { ord_name: count.innerHTML });
 
-        console.log(count.innerHTML);
+        // console.log(count.innerHTML);
         orderData[ord_name] = count.innerHTML;
         userOrderData.value = JSON.stringify(orderData);
         localStorage.setItem('orderDataAdmin', JSON.stringify(orderData));
@@ -158,7 +171,7 @@ for (let i = 0; i < orderImage.length; i++) {
 function calculateTotalPrice() {
     let total = 0;
     for (let i = 0; i < priceSpan.length; i++) {
-        console.log(priceSpan[i]);
+        // console.log(priceSpan[i]);
         total += parseInt(priceSpan[i].innerHTML);
     }
     totalPrice.innerHTML = total;
@@ -209,7 +222,7 @@ function removeAction(event2) {
 
 function renderElement(orderData,productPrice,totalProductPrice) {
     Object.keys(orderData).forEach(function (key) {
-        console.log('Key : ' + key + ', Value : ' + orderData[key])
+        // console.log('Key : ' + key + ', Value : ' + orderData[key])
         let myorder = document.createElement('div');
         myorder.setAttribute('class', 'orderList');
         myorder.setAttribute('name', 'order_list');
@@ -275,7 +288,7 @@ function renderElement(orderData,productPrice,totalProductPrice) {
             event2.target.style.pointerEvents='auto';
             clickableImage[ord_name] = 'auto';
             localStorage.setItem('clickableImageAdmin', JSON.stringify(clickableImage));
-            console.log("aaaa = " + localStorage.getItem('clickableImageAdmin'));
+            // console.log("aaaa = " + localStorage.getItem('clickableImageAdmin'));
             removeAction(event2);
             img_click(clickableImage);
         };
@@ -287,7 +300,7 @@ function renderElement(orderData,productPrice,totalProductPrice) {
 }
 function img_click(clickableImage) {
     Object.keys(clickableImage).forEach(function (key) {
-        console.log('Key : ' + key + ', Value : ' + clickableImage[key])
+        // console.log('Key : ' + key + ', Value : ' + clickableImage[key])
         for (let a = 0; a < orderImage.length; a++) {
             if (orderImage[a].name == key) {
                 orderImage[a].style.pointerEvents = clickableImage[key];

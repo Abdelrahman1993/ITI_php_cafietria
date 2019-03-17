@@ -54,6 +54,30 @@
             </div>
         </div>
 
+<div class="container">
+<div class="row">
+
+            <div>
+                <h1>my order</h1>
+            </div>
+
+            <form name="orderForm" method="post" action="myorder.php">
+                <p class="search_input">
+                <div class="row">
+                    <div class="col-lg-4 offset-1">
+                        <input name="startDate" type="date" class="col-lg-12 btn-lg" value="<?= $start ?>" >
+                    </div>
+                    <div class="col-lg-4">
+                        <input name="endDate" type="date" class="col-lg-12 btn-lg" value="<?= $end ?>" >
+                    </div>
+                    <div class="col-lg-4">
+                        <input type="submit" value="filter"  name="submit" class="col-lg-12 btn-lg">
+                    </div>
+                </div>
+                </p>
+            </form>
+        </div>
+</div>
 
 <div class="container">
     <!--start of the head and date-->
@@ -78,28 +102,8 @@
                   AND user_id = '2'  ";
     ?>
 
-    <div class="row">
-<!--        <div class="orderDate">-->
-            <div>
-                <h1>my order</h1>
-            </div>
 
-            <form name="orderForm" method="post" action="myorder.php">
-                <p class="search_input">
-                <div class="row">
-                    <div class="col-lg-4 offset-1">
-                        <input name="startDate" type="date" class="col-lg-12 btn-lg" value="<?= $start ?>" >
-                    </div>
-                    <div class="col-lg-4">
-                        <input name="endDate" type="date" class="col-lg-12 btn-lg" value="<?= $end ?>" >
-                    </div>
-                    <div class="col-lg-4">
-                        <input type="submit" value="filter"  name="submit" class="col-lg-12 btn-lg">
-                    </div>
-                </div>
-                </p>
-            </form>
-<!--        </div>-->
+    <div class="row">
         <div class="col-12">
             <ul class="cd-accordion-menu animated container">
                 <li>
@@ -203,6 +207,6 @@
         </div>
     </div>
 </div>
-<?php //include $tpl . 'footer.php';?>
+<?php include $tpl . 'footer.php';?>
 <script src="Layout/js/myorder.js"></script> <!-- Resource jQuery -->
 
