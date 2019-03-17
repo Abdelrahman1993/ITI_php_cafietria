@@ -12,7 +12,7 @@
       <h4 style="color: white;">we will send your new password to your email</h4>
       <form action="sendmail/send_email.php" method="POST">
         <input type="email" name="user" placeholder="Enter your email" autocomplete="off" />
-        <input type="submit" name="" value="Reset Password">
+        <input type="submit" name="submit" value="Reset Password">
       </form>
       <a href="index.php">login page<a>
     </div>

@@ -3,7 +3,7 @@
   $noHeader = '';
   include 'init.php';
   echo "1111<br>";
-  if(isset($_POST['submit']))
+  if($_SERVER['REQUEST_METHOD'] == 'POST')
   {
     $user_email = $_POST['user'];
     $user_new_pass = $POST['new_pass'];
