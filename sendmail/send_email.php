@@ -8,7 +8,8 @@
   {
     echo "1111<br>";
     $username = $_POST['user'];
-    print_r($con);
+    var_dump($con);
+    echo "ooooooooo<br>";
     //check if user exist in the db
     $stmt = $con->prepare("SELECT * FROM User WHERE email = ?");
     $stmt->execute(array($username));
