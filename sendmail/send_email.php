@@ -28,12 +28,23 @@
     $_POST['shuffled'] = str_shuffle($val_code);
     $_POST['shuffled'] = substr($_POST['shuffled'], 0, 8);
     $to = $user_email;
-    $subject = "new password";
-    $txt = "Your new password is :   ".password_hash($_POST['shuffled']);
-    $txt .= "\n";
-    $txt .= "please login with your new password   ";
-    $headers = 'From: https://cafeteriait.herokuapp.com' . "\r\n";
-    $m=mail($to,$subject,$txt);
+
+//    //////////////////////////
+//    $subject = "new password";
+//    $txt = "Your new password is :   ".password_hash($_POST['shuffled']);
+//    $txt .= "\n";
+//    $txt .= "please login with your new password   ";
+//    $headers = 'From: https://cafeteriait.herokuapp.com' . "\r\n";
+//    $m=mail($to,$subject,$txt);
+    ////////////////////////////
+$subject = 'the subject';
+$message = 'hello';
+$headers = 'From: webmaster@example.com' . "\r\n" .
+    'Reply-To: webmaster@example.com' . "\r\n" .
+    'X-Mailer: PHP/' . phpversion();
+
+$sm=mail($to, $subject, $message, $headers);
+/////////////////////////////////////
     if($m)
     {
       echo'Check your inbox in mail';
