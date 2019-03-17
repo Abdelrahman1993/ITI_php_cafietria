@@ -35,7 +35,10 @@
     $stmt = $con->prepare("SELECT * FROM User WHERE email = ?");
     $stmt->execute(array($username));
     while ($row = $stmt->fetch()) {
-      $mail = new \PHPMailer\PHPMailer\PHPMailer(TRUE);
+      $mail = new PHPMailer(TRUE);
+
+      $mail->SMTPSecure = 'ssl'; //secure transfer enabled
+
       $mail->setFrom('zaza_cafe@outlook.com', 'ITI Cafe Admin');
       $mail->addAddress($username);
       $mail->Subject = 'Reset password';
@@ -53,9 +56,9 @@
 
       echo "ccccccccccc";
 
-      $mail->send();
+      $send=$mail->send();
       echo "dddddddd";
-      if(!$mail->send()) {
+      if(!$send) {
         echo 'Email is not sent.';
         echo 'Email error: ' . $mail->ErrorInfo;
       } else {
