@@ -32,29 +32,27 @@
       require 'libphp-phpmailer/class.phpmailer.php';
       require 'libphp-phpmailer/class.smtp.php';
       $mail = new PHPMailer;
-      $mail->setFrom('zaza_cafe@outlook.com');
+
+      $mail->IsSMTP();
+      $mail->Host = 'smtp-mail.outlook.com';
+      $mail->SMTPAuth = true;
+
+      $mail->Username = 'zaza_cafe@outlook.com';
+      $mail->Password = 'M+e=2018';
+
+      $mail->Port = 587;
+
+      $mail->setFrom('zaza_cafe@outlook.com', 'ITI Cafe Admin');
       $mail->addAddress($username);
       $mail->Subject = 'your new password';
       $mail->Body = 'this is your new password:  '.$_POST['shuffled'];
-      $mail->IsSMTP();
-      $mail->SMTPSecure = 'ssl';
-      $mail->Host = 'smtp-mail.outlook.com';
-      $mail->SMTPAuth = true;
-      $mail->Port = 587;
 
-//      //Set your existing gmail address as user name
-      $mail->Username = 'zaza_cafe@outlook.com';
-
-      //Set the password of your gmail address here
-      $mail->Password = 'M+e=2018';
       if(!$mail->send()) {
         echo 'Email is not sent.';
         echo 'Email error: ' . $mail->ErrorInfo;
       } else {
         echo 'Email has been sent.';
       }
-
-
 
 
       /////////////////////////////
