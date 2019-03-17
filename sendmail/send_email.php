@@ -41,7 +41,7 @@
     while ($row = $stmt->fetch()) {
       $mail = new PHPMailer(TRUE);
       $mail->SMTPDebug = 2;
-      $mail->SMTPSecure = 'tsl'; //secure transfer enabled
+//      $mail->SMTPSecure = 'tsl'; //secure transfer enabled
 
       $mail->setFrom('zaza_cafe@outlook.com', 'ITI Cafe Admin');
       $mail->addAddress($username);
@@ -52,7 +52,7 @@
       $mail->Host = 'smtp-mail.outlook.com';
       $mail->SMTPAuth = true;
 
-      $mail->Username = 'zaza_cafe@outlook.com';
+      $mail->Username = 'zaza_cafe';
       $mail->Password = 'M+e=2018';
 
       $mail->Port = 587;
