@@ -19,7 +19,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
 
     $val_code = "0123456789zxcvbnmqwertyuioplkjhgfdsa";
     $_POST['shuffled'] = str_shuffle($val_code);
-    $_POST['shuffled'] = password_hash(substr($_POST['shuffled'], 0, 8));
+    $_POST['shuffled'] = substr($_POST['shuffled'], 0, 8);
+
     //check if user exist in the db
     $stmt = $con->prepare("SELECT * FROM User WHERE email = ?");
     $stmt->execute(array($username));
@@ -72,7 +73,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
 //      if ($m) {
 //        echo 'Check your inbox in mail';
 //        $stmt_1 = $con->prepare("update User set password = ? where email= ?");
-//        $stmt_1->execute(array($_POST['shuffled'], $user_email));
+//        $stmt_1->execute(array(password_hash($_POST['shuffled'], PASSWORD_DEFAULT), $username));
 //        header('Location:index.php');
 //      } else {
 //        echo 'mail is not send';
