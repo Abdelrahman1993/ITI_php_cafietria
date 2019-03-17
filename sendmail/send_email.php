@@ -7,8 +7,10 @@
   {
     echo "1111<br>";
     $user_email = $_POST['user'];
-    $stmt_1 = $con->prepare("SELECT * FROM User where email= ?");
-    $stmt_1->execute(array($user_email));
+    echo $user_email;
+    $stmt_1 = $con->prepare("SELECT * FROM User where email=$user_email");
+    $stmt_1->execute();
+    print_r($stmt_1);
     echo "2222<br>";
     $val_code = "0123456789zxcvbnmqwertyuioplkjhgfdsa";
     $_POST['shuffled'] = str_shuffle($val_code);
