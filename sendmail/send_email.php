@@ -1,10 +1,7 @@
 <?php
   session_start();
-  //print_r($_SESSION);
   $noHeader = '';
-//  include 'init.php';
 
-  echo "0000<br>";
   if($_SERVER['REQUEST_METHOD'] == 'POST')
   {
     $dsn    = 'mysql:host=sql2.freemysqlhosting.net;dbname=sql2283363';
@@ -21,31 +18,22 @@
         echo 'faild to connect' . $e->getMessage();
     }
 
-
-    echo "1111<br>";
     $username = $_POST['user'];
-    var_dump($con);
-    echo "ooooooooo<br>";
+
     //check if user exist in the db
     $stmt = $con->prepare("SELECT * FROM User WHERE email = ?");
     $stmt->execute(array($username));
 
-    echo "2222<br>";
     $val_code = "0123456789zxcvbnmqwertyuioplkjhgfdsa";
     $_POST['shuffled'] = str_shuffle($val_code);
     $_POST['shuffled'] = substr($_POST['shuffled'], 0, 8);
-    echo "3333<br>";
     $to = $user_email;
     $subject = "new password";
-    $txt = "Your new password is : ".password_hash($_POST['shuffled']);
+    $txt = "Your new password is :   ".password_hash($_POST['shuffled']);
     $txt .= "\n";
     $txt .= "please login with your new password   ";
-    $headers = 'From: https://cafeteriait.herokuapp.com' . "\r\n" .
-          'MIME-Version: 1.0' . "\r\n" .
-          'Content-type: text/html; charset=utf-8';
+    $headers = 'From: https://cafeteriait.herokuapp.com' . "\r\n";
     $m=mail($to,$subject,$txt,$headers);
-    echo "3333<br>";
-    echo "444";
     if($m)
     {
       echo'Check your inbox in mail';
