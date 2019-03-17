@@ -42,7 +42,7 @@
 
       $mail->Port = 587;
 
-      $mail->setFrom('zaza_cafe@outlook.com', 'ITI Cafe Admin');
+      $mail->setFrom = 'zaza_cafe@outlook.com';
       $mail->addAddress($username);
       $mail->Subject = 'your new password';
       $mail->Body = 'this is your new password:  '.$_POST['shuffled'];
