@@ -74,7 +74,7 @@
   }
 
   include 'dbConnection.php';
-
+  print_r($con);
   $stmt = $con->prepare("INSERT INTO User (name, email, password, img_path, room_id, group_id)
   VALUES (?,?,?,?,?,?)");
   if ($stmt->execute(array($user_name, $user_email, $user_pass, $target_file,
