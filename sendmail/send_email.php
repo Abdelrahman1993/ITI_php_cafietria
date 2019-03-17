@@ -1,13 +1,14 @@
 <?php
   session_start();
   $noHeader = '';
-  include 'init.php';
+  include 'dbConnection.php';
+
   echo "0000<br>";
   if($_SERVER['REQUEST_METHOD'] == 'POST')
   {
     echo "1111<br>";
     $username = $_POST['user'];
-
+    print_r($con);
     //check if user exist in the db
     $stmt = $con->prepare("SELECT * FROM User WHERE email = ?");
     $stmt->execute(array($username));
