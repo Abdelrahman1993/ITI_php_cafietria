@@ -4,7 +4,7 @@
   {
     header('Location:add_user.php');
   }
-
+  require 'dbConnection.php';
   $errors = "";
   if(!isset($_POST['user_name']) || empty($_POST['user_name'])){
     $errors .= "1";
@@ -30,7 +30,7 @@
   $user_pass = password_hash($_POST['user_pass'], PASSWORD_DEFAULT);
   $room_num = $_POST['room_num'];
   $ext = $_POST['ext'];
-
+  $admin = $_POST['admin'];
 
 
   $target_dir = "Layout/images/";
@@ -74,12 +74,21 @@
   }
 
   include 'dbConnection.php';
-  print_r($con);
+  echo $user_name;
+  echo "<br>";
+  echo $user_email;
+  echo "<br>";
+  echo $user_pass;
+  echo "<br>";
+  echo $target_file;
+  echo "<br>";
+  echo $room_num;
+  echo "<br>";
+
   $stmt = $con->prepare("INSERT INTO User (name, email, password, img_path, room_id, group_id)
   VALUES (?,?,?,?,?,?)");
-  if ($stmt->execute(array($user_name, $user_email, $user_pass, $target_file,
-    $room_num, 0))) {
+
+  if ($stmt->execute(array($user_name, $user_email, $user_pass, $target_file, $room_num, $admin))) {
     header('Location:users.php');
   }
-  echo "kkkkkkkk";
 ?>

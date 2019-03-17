@@ -58,7 +58,7 @@
         <div class="col-10">
           <select name="room_num" class="form-control form-control-lg border-danger ">
             <?php
-            echo '<option disabled="true" selected>Select Room Number</option>';
+//            echo '<option disabled="true" selected>Select Room Number</option>';
               $stmt = $con->prepare("SELECT * FROM Room");
               $stmt->execute();
               while ($row = $stmt->fetch()) {
@@ -66,6 +66,15 @@
                 echo '<option value='.$row['room_id'].'>'.$row['room_id'].'</option>';
               }
             ?>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-10">
+          <select name="admin" class="form-control form-control-lg border-danger ">
+            <option value="0">no</option>
+            <option value="1">yes</option>
           </select>
         </div>
       </div>
