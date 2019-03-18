@@ -121,6 +121,7 @@ catch(PDOException $e)
 
       <?php $i=0; $j=0;?>
       <?php while ($row = $statement->fetch(PDO::FETCH_ASSOC)) { $i++;
+      print_r($row);
         ?>
 
 

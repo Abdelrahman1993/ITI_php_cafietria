@@ -164,11 +164,26 @@ while($row= $stmt_2->fetch())
               </h4>
             </td>
             <td>
-              <button type="submit" class="btn btn-danger font-weight-bold">
-                <h5 class="font-weight-bold">
-                  Deliver
-                </h5>
-              </button>
+              <?php
+              if($row['order_status'] != "done") {
+                ?>
+                <button onclick = "update_order(event, <?= $row['id']; ?>)" class="btn btn-danger font-weight-bold" >
+                <h5 class="font-weight-bold" >
+                    deliver
+                </h5 >
+              </button >
+              <?php
+              } else {
+                ?>
+
+                <button class="btn btn-danger font-weight-bold" >
+                <h5 class="font-weight-bold" >
+                    done
+                </h5 >
+                </button >
+              <?php
+              }
+              ?>
             </td>
           </tr>
         </tbody>
@@ -191,11 +206,6 @@ while($row= $stmt_2->fetch())
                   <h5 class="card-title" style="background-color: #4cae4c">Count :<?=$row2['count']?></h5>
               </div>
           </div>
-
-
-
-
-
           <?php
           }
       }
@@ -219,3 +229,18 @@ while($row= $stmt_2->fetch())
 </li>
 <li><a href="?pageno=<?php echo $total_pages; ?>">Last</a></li>
 </ul>
+
+<script>
+ let update_order = (event, id) => {
+   console.log(event.target);
+   event.target.children[0].innerHTML = "out for delivery";
+   setTimeout(()=>{
+    event.target.children[0].innerHTML = "done";
+     let xmlhttp = new XMLHttpRequest();
+     xmlhttp.open("GET", "update_order.php?q=" + id, true);
+     xmlhttp.send();
+   }, 60000);
+  // console.log(id);
+ }
+
+</script>
