@@ -37,6 +37,7 @@ if(!isset($_SESSION['User']))
                           echo $_SESSION['User']['name'];
                         ?>
                         </a>
+                        <a href="logout.php">Logout</a>
                     </div>
 
                 </nav>
